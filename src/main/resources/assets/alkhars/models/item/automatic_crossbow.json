@@ -1,0 +1,31 @@
+{
+    "parent": "alkhars:item/automatic_crossbow/automatic_crossbow_standby",
+    "overrides": [
+        {
+            "predicate": {
+                "pulling": 1
+            },
+            "model": "alkhars:item/automatic_crossbow/automatic_crossbow_pulling0"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 0.58
+            },
+            "model": "alkhars:item/automatic_crossbow/automatic_crossbow_pulling1"
+        },
+        {
+            "predicate": {
+                "pulling": 1,
+                "pull": 1.0
+            },
+            "model": "alkhars:item/automatic_crossbow/automatic_crossbow_pulling2"
+        },
+        {
+            "predicate": {
+                "charged": 1
+            },
+            "model": "alkhars:item/automatic_crossbow/automatic_crossbow_loaded"
+        }
+    ]
+}
