@@ -19,6 +19,7 @@ public class CreativeTabInit {
                     .title(Component.translatable("itemGroup.alkhars.alkhars"))
                     .icon(ItemInit.AUTOMATIC_CROSSBOW.get()::getDefaultInstance)
                     .withSearchBar().displayItems((displayParams,output)->{
+                        output.accept(ItemInit.CROSSBOW_SCYTHE.get());
                         output.accept(ItemInit.AUTOMATIC_CROSSBOW.get());
                     })
                     .build());

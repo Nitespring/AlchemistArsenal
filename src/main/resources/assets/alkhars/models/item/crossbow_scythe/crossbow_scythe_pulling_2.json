@@ -1,0 +1,6 @@
+{
+    "parent": "alkhars:item/crossbow_scythe",
+    "textures": {
+        "layer0": "alkhars:item/crossbow_scythe/crossbow_scythe_pulling_2"
+    }
+}

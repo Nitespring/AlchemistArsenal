@@ -5,9 +5,12 @@ import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.client.renderer.item.ItemPropertyFunction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.component.ChargedProjectiles;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -42,6 +45,40 @@ public class ClientListener {
                     ItemInit.AUTOMATIC_CROSSBOW.get(),
                     ResourceLocation.withDefaultNamespace("charged"),
                     (stack, level, player, seed) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+            );
+            ItemProperties.register(
+                    ItemInit.CROSSBOW_SCYTHE.get(),
+                    ResourceLocation.withDefaultNamespace("pull"),
+                    (stack, level, player, seed) -> {
+                        if (player == null) {
+                            return 0.0F;
+                        } else {
+                            return CrossbowItem.isCharged(stack) ? 0.0F
+                                    : (float) (stack.getUseDuration(player) - player.getUseItemRemainingTicks())
+                                    / (float) CrossbowItem.getChargeDuration(stack, player);
+                        }
+                    }
+            );
+            ItemProperties.register(
+                    ItemInit.CROSSBOW_SCYTHE.get(),
+                    ResourceLocation.withDefaultNamespace("pulling"),
+                    (stack, level, player, seed) -> player != null
+                            && player.isUsingItem() && player.getUseItem() == stack
+                            && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+            );
+            ItemProperties.register(
+                    ItemInit.CROSSBOW_SCYTHE.get(),
+                    ResourceLocation.withDefaultNamespace("charged"),
+                    (stack, level, player, seed) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+            );
+            ItemProperties.register(
+                    ItemInit.CROSSBOW_SCYTHE.get(),
+                    ResourceLocation.withDefaultNamespace("firework"),
+                    (stack, level, player, seed) ->
+                    {
+                        ChargedProjectiles chargedprojectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+                        return chargedprojectiles != null && chargedprojectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
+                    }
             );
         });
     }
