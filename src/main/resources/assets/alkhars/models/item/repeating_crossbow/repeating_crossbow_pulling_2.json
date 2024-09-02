@@ -1,0 +1,6 @@
+{
+    "parent": "alkhars:item/repeating_crossbow/repeating_crossbow_standby",
+    "textures": {
+        "0": "alkhars:item/repeating_crossbow/repeating_crossbow_pulling2"
+    }
+}

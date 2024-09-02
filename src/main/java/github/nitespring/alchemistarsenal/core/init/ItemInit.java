@@ -1,6 +1,7 @@
 package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
+import github.nitespring.alchemistarsenal.common.item.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.CrossbowScythe;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,9 +20,9 @@ public class ItemInit {
             AlchemistArsenal.MODID);
 
 
-
-    //Special Weapons
-    public static final DeferredHolder<Item, CrossbowItem> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
+    public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
+            ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512)));
+    public static final DeferredHolder<Item, CrossbowItem> REPEATING_CROSSBOW = ITEMS.register("repeating_crossbow",
             ()->new CrossbowItem(new Item.Properties().stacksTo(1).durability(512)));
 
     public static final DeferredHolder<Item, CrossbowItem> CROSSBOW_SCYTHE = ITEMS.register("crossbow_scythe",
