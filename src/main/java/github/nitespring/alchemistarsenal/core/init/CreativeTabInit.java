@@ -18,10 +18,14 @@ public class CreativeTabInit {
             () ->CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.alkhars.alkhars"))
                     .icon(ItemInit.AUTOMATIC_CROSSBOW.get()::getDefaultInstance)
-                    .withSearchBar().displayItems((displayParams,output)->{
+                    .displayItems((displayParams,output)->{
                         output.accept(ItemInit.CROSSBOW_SCYTHE.get());
                         output.accept(ItemInit.REPEATING_CROSSBOW.get());
                         output.accept(ItemInit.AUTOMATIC_CROSSBOW.get());
+                        output.accept(ItemInit.BOUNCY_ARROW.get());
+                        output.accept(ItemInit.LIGHTNING_ARROW.get());
+                        output.accept(ItemInit.DRAGON_ARROW.get());
+                        output.accept(ItemInit.INFERNAL_ARROW.get());
                     })
                     .build());
 

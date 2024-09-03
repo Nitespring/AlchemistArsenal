@@ -1,4 +1,4 @@
-package github.nitespring.alchemistarsenal.common.item;
+package github.nitespring.alchemistarsenal.common.item.weapons;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;

@@ -1,25 +1,24 @@
 package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
-import github.nitespring.alchemistarsenal.common.item.AutomaticCrossbow;
-import github.nitespring.alchemistarsenal.common.item.RepeatingCrossbow;
+import github.nitespring.alchemistarsenal.client.render.BouncyArrowRenderer;
+import github.nitespring.alchemistarsenal.client.render.InfernalArrowRenderer;
+import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
+import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
+import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.renderer.block.model.ItemOverrides;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.client.renderer.item.ItemPropertyFunction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -138,10 +137,16 @@ public class ClientListener {
 
         });
     }
+
     @SubscribeEvent
+    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityInit.INFERNAL_ARROW.get(), InfernalArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.BOUNCY_ARROW.get(), BouncyArrowRenderer::new);
+    }
+    /*@SubscribeEvent
     public static void onClientSetup(RegisterClientExtensionsEvent event) {
 
-    }
+    }*/
 
 
 }

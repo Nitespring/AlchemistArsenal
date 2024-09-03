@@ -1,0 +1,21 @@
+{
+    "parent": "neoforge:item/default",
+    "neoforge_data": {
+        "layers": {
+            "0": {
+                "block_light": 0,
+                "sky_light": 0
+            },
+            "1": {
+                "block_light": 15,
+                "sky_light": 15
+            }
+        }
+    },
+    "loader": "neoforge:item_layers",
+    "render_types": {},
+    "textures": {
+        "layer0": "alkhars:item/infernal_arrow",
+        "layer1": "alkhars:item/infernal_arrow_emissive"
+    }
+}

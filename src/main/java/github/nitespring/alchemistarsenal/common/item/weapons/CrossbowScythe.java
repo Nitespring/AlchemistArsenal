@@ -1,4 +1,4 @@
-package github.nitespring.alchemistarsenal.common.item;
+package github.nitespring.alchemistarsenal.common.item.weapons;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlotGroup;

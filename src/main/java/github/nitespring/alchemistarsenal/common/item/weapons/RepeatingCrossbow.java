@@ -1,4 +1,4 @@
-package github.nitespring.alchemistarsenal.common.item;
+package github.nitespring.alchemistarsenal.common.item.weapons;
 
 import com.google.common.collect.Lists;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;

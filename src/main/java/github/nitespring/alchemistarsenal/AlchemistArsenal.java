@@ -2,6 +2,7 @@ package github.nitespring.alchemistarsenal;
 
 import github.nitespring.alchemistarsenal.core.init.CreativeTabInit;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
+import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import org.slf4j.Logger;
 
@@ -50,6 +51,7 @@ public class AlchemistArsenal
         //NeoForge.EVENT_BUS.register(this);
         DataComponentInit.DATA_COMPONENTS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
+        EntityInit.ENTITY_TYPES.register(modEventBus);
         CreativeTabInit.TABS.register(modEventBus);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
