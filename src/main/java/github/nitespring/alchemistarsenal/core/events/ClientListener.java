@@ -3,6 +3,7 @@ package github.nitespring.alchemistarsenal.core.events;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.item.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.RepeatingCrossbow;
+import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -125,9 +126,13 @@ public class ClientListener {
                     ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"amount"),
                     (stack, level, player, seed) ->
                     {
-                        ChargedProjectiles chargedprojectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+                        ChargedProjectiles chargedprojectiles1 = stack.get(DataComponents.CHARGED_PROJECTILES);
+                        ChargedProjectiles chargedprojectiles2 = stack.get(DataComponentInit.CHARGED_PROJECTILES2);
+                        ChargedProjectiles chargedprojectiles3 = stack.get(DataComponentInit.CHARGED_PROJECTILES3);
 
-                        return Math.min(chargedprojectiles.getItems().size(), 3);
+                        return (chargedprojectiles3!=null && !chargedprojectiles3.isEmpty()) ? 3 :
+                                (chargedprojectiles2!=null &&!chargedprojectiles2.isEmpty()) ? 2 :
+                                        (chargedprojectiles1!=null &&!chargedprojectiles1.isEmpty()) ? 1 : 0;
                     }
             );
 

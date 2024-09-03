@@ -1,6 +1,7 @@
 package github.nitespring.alchemistarsenal.common.item;
 
 import com.google.common.collect.Lists;
+import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponents;
@@ -29,7 +30,9 @@ import java.util.function.Predicate;
 public class RepeatingCrossbow extends CrossbowItem {
     public static final Predicate<ItemStack> FIREWORK_ONLY = p_43017_ -> p_43017_.is(Items.FIREWORK_ROCKET);
     public RepeatingCrossbow(Properties pProperties) {
-        super(pProperties.component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY));
+        super(pProperties.component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)
+                .component(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.EMPTY)
+                .component(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.EMPTY));
     }
 
 
@@ -60,43 +63,65 @@ public class RepeatingCrossbow extends CrossbowItem {
         float f = getPowerForTime(i, stack, livingEntity);
         if (f >= 1.0F && !isCharged(stack)) {
             if(livingEntity instanceof Player player) {
-                ArrayList<ItemStack> projectiles = new ArrayList<ItemStack>();
                 ItemStack ammo1 = player.getProjectile(stack);
+                if(player.isCreative()){
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo1));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo1));
+                }
                 if(ammo1!=ItemStack.EMPTY){
-                    projectiles.add(ammo1);
+                    stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(ammo1));
                     if(ammo1.is(Items.FIREWORK_ROCKET)){
                         if(!player.isCreative()){useAmmo(stack,ammo1,livingEntity,false);}
-                        for (int k = 0; i < 2; i++) {
-                            ItemStack ammo = player.getItemBySlot(EquipmentSlot.OFFHAND);
-                            if(ammo.is(Items.FIREWORK_ROCKET)){
-                                projectiles.set(k+1,ammo);
-                                if(!player.isCreative()){ammo.shrink(1);}
-
+                        ItemStack ammo2 = player.getItemBySlot(EquipmentSlot.OFFHAND);
+                        if(ammo2!=ItemStack.EMPTY) {
+                            if (ammo2.is(Items.FIREWORK_ROCKET)) {
+                                stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo2));
+                                if (!player.isCreative()) {
+                                    useAmmo(stack, ammo2, livingEntity, false);
+                                }
                             }
-                        }
-                        stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(projectiles));
-                    }else{
-                        if(!player.isCreative()){useAmmo(stack,ammo1,livingEntity,false);}
-                        for (int k = 0; i < 2; i++) {
-                            int j = 0;
-                            ItemStack ammo =ItemStack.EMPTY;
-                            while (ammo==ItemStack.EMPTY && j < player.getInventory().getContainerSize()) {
-                                ItemStack itemstack1 = player.getInventory().getItem(i);
-                                if (itemstack1.is(ItemTags.ARROWS)) {
-                                    ammo=itemstack1;
-                                    projectiles.set(k+1,ammo);
-                                    if(!player.isCreative()){useAmmo(stack,itemstack1,livingEntity,false);}
+                            ItemStack ammo3 = player.getItemBySlot(EquipmentSlot.OFFHAND);
+                            if(ammo3!=ItemStack.EMPTY) {
+                                if (ammo3.is(Items.FIREWORK_ROCKET)) {
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo3));
+                                    if (!player.isCreative()) {
+                                        useAmmo(stack, ammo3, livingEntity, false);
+                                    }
                                 }
                             }
                         }
-                        stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(projectiles));
+
+                    }else{
+                        if(!player.isCreative()){useAmmo(stack,ammo1,livingEntity,false);}
+                            int j = 0;
+                            ItemStack ammo2 =ItemStack.EMPTY;
+                            while (ammo2==ItemStack.EMPTY && j < player.getInventory().getContainerSize()) {
+                                ItemStack itemstack1 = player.getInventory().getItem(j);
+                                if (itemstack1.is(ItemTags.ARROWS)) {
+                                    ammo2=itemstack1;
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo2));
+                                    if(!player.isCreative()){useAmmo(stack,itemstack1,livingEntity,false);}
+                                }
+                                j++;
+                            }
+
+                            int k = 0;
+                            ItemStack ammo3 =ItemStack.EMPTY;
+                            while (ammo3==ItemStack.EMPTY && k < player.getInventory().getContainerSize()) {
+                                ItemStack itemstack1 = player.getInventory().getItem(k);
+                                if (itemstack1.is(ItemTags.ARROWS)) {
+                                    ammo3=itemstack1;
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo3));
+                                    if(!player.isCreative()){useAmmo(stack,itemstack1,livingEntity,false);}
+                                }
+                                k++;
+                            }
+
                     }
-                }else if(player.isCreative()){
-                    for (int k = 0; i < 2; i++) {
-                        ItemStack ammo = getDefaultCreativeAmmo(player, stack);
-                            projectiles.set(k,ammo);
-                    }
-                    stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(projectiles));
+                }else if(player.getAbilities().instabuild){
+                    stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
                 }
 
             }
@@ -104,8 +129,10 @@ public class RepeatingCrossbow extends CrossbowItem {
     }
 
     public static boolean isCharged(ItemStack pCrossbowStack) {
-        ChargedProjectiles chargedprojectiles = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
-        return !chargedprojectiles.isEmpty();
+        ChargedProjectiles chargedprojectiles1 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
+        ChargedProjectiles chargedprojectiles2 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
+        ChargedProjectiles chargedprojectiles3 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
+        return !chargedprojectiles1.isEmpty();
     }
 
     private static float getPowerForTime(int pTimeLeft, ItemStack pStack, LivingEntity pShooter) {
@@ -120,15 +147,29 @@ public class RepeatingCrossbow extends CrossbowItem {
     public void performShooting(Level pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pWeapon, float pVelocity, float pInaccuracy, @Nullable LivingEntity pTarget) {
         if (pLevel instanceof ServerLevel serverlevel) {
             if (pShooter instanceof Player player && net.neoforged.neoforge.event.EventHooks.onArrowLoose(pWeapon, pShooter.level(), player, 1, true) < 0) return;
-            ChargedProjectiles chargedprojectiles = pWeapon.get(DataComponents.CHARGED_PROJECTILES);
-            if (chargedprojectiles != null && !chargedprojectiles.isEmpty()) {
-                int size = chargedprojectiles.getItems().size();
-                this.shoot(serverlevel, pShooter, pHand, pWeapon, Collections.singletonList(chargedprojectiles.getItems().getLast()), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
-                if(size<=1){
-                    pWeapon.set(DataComponents.CHARGED_PROJECTILES,ChargedProjectiles.EMPTY);
-                }else{
-                    pWeapon.set(DataComponents.CHARGED_PROJECTILES,ChargedProjectiles.of(chargedprojectiles.getItems().removeLast()));
+            ChargedProjectiles chargedprojectiles1 = pWeapon.get(DataComponents.CHARGED_PROJECTILES);
+            ChargedProjectiles chargedprojectiles2 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES2);
+            ChargedProjectiles chargedprojectiles3 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES3);
+            if (chargedprojectiles3 != null && !chargedprojectiles3.isEmpty()) {
+                this.shoot(serverlevel, pShooter, pHand, pWeapon, chargedprojectiles3.getItems(), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
+                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES3,ChargedProjectiles.EMPTY);
+
+                if (pShooter instanceof ServerPlayer serverplayer) {
+                    CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
+                    serverplayer.awardStat(Stats.ITEM_USED.get(pWeapon.getItem()));
                 }
+            }else if (chargedprojectiles2 != null && !chargedprojectiles2.isEmpty()) {
+                this.shoot(serverlevel, pShooter, pHand, pWeapon, chargedprojectiles2.getItems(), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
+                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES2,ChargedProjectiles.EMPTY);
+
+                if (pShooter instanceof ServerPlayer serverplayer) {
+                    CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
+                    serverplayer.awardStat(Stats.ITEM_USED.get(pWeapon.getItem()));
+                }
+            }else if (chargedprojectiles1 != null && !chargedprojectiles1.isEmpty()) {
+                this.shoot(serverlevel, pShooter, pHand, pWeapon, chargedprojectiles1.getItems(), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
+                pWeapon.set(DataComponents.CHARGED_PROJECTILES,ChargedProjectiles.EMPTY);
+
                 if (pShooter instanceof ServerPlayer serverplayer) {
                     CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
                     serverplayer.awardStat(Stats.ITEM_USED.get(pWeapon.getItem()));
@@ -145,21 +186,52 @@ public class RepeatingCrossbow extends CrossbowItem {
 
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
-        ChargedProjectiles chargedprojectiles = pStack.get(DataComponents.CHARGED_PROJECTILES);
-        if (chargedprojectiles != null && !chargedprojectiles.isEmpty()) {
-            for(int i = 0; i<chargedprojectiles.getItems().size();i++) {
-                ItemStack itemstack = chargedprojectiles.getItems().get(i);
+        ChargedProjectiles chargedprojectiles1 = pStack.get(DataComponents.CHARGED_PROJECTILES);
+        ChargedProjectiles chargedprojectiles2 = pStack.get(DataComponentInit.CHARGED_PROJECTILES2);
+        ChargedProjectiles chargedprojectiles3 = pStack.get(DataComponentInit.CHARGED_PROJECTILES3);
+
+        if (chargedprojectiles1 != null && !chargedprojectiles1.isEmpty()) {
+                ItemStack itemstack = chargedprojectiles1.getItems().get(0);
                 pTooltipComponents.add(Component.translatable("item.minecraft.crossbow.projectile").append(CommonComponents.SPACE).append(itemstack.getDisplayName()));
                 if (pTooltipFlag.isAdvanced() && itemstack.is(Items.FIREWORK_ROCKET)) {
                     List<Component> list = Lists.newArrayList();
                     Items.FIREWORK_ROCKET.appendHoverText(itemstack, pContext, list, pTooltipFlag);
                     if (!list.isEmpty()) {
-                        for (int j = 0; j < list.size(); j++) {
-                            list.set(j, Component.literal("  ").append(list.get(i)).withStyle(ChatFormatting.GRAY));
+                        for (int i = 0; i < list.size(); i++) {
+                            list.set(i, Component.literal("  ").append(list.get(i)).withStyle(ChatFormatting.GRAY));
                         }
 
                         pTooltipComponents.addAll(list);
                     }
+                }
+        }
+        if(chargedprojectiles2!= null && !chargedprojectiles2.isEmpty()){
+            ItemStack itemstack = chargedprojectiles2.getItems().get(0);
+            pTooltipComponents.add(Component.translatable("item.minecraft.crossbow.projectile").append(CommonComponents.SPACE).append(itemstack.getDisplayName()));
+            if (pTooltipFlag.isAdvanced() && itemstack.is(Items.FIREWORK_ROCKET)) {
+                List<Component> list = Lists.newArrayList();
+                Items.FIREWORK_ROCKET.appendHoverText(itemstack, pContext, list, pTooltipFlag);
+                if (!list.isEmpty()) {
+                    for (int i = 0; i < list.size(); i++) {
+                        list.set(i, Component.literal("  ").append(list.get(i)).withStyle(ChatFormatting.GRAY));
+                    }
+
+                    pTooltipComponents.addAll(list);
+                }
+            }
+        }
+        if(chargedprojectiles3!= null && !chargedprojectiles3.isEmpty()){
+            ItemStack itemstack = chargedprojectiles3.getItems().get(0);
+            pTooltipComponents.add(Component.translatable("item.minecraft.crossbow.projectile").append(CommonComponents.SPACE).append(itemstack.getDisplayName()));
+            if (pTooltipFlag.isAdvanced() && itemstack.is(Items.FIREWORK_ROCKET)) {
+                List<Component> list = Lists.newArrayList();
+                Items.FIREWORK_ROCKET.appendHoverText(itemstack, pContext, list, pTooltipFlag);
+                if (!list.isEmpty()) {
+                    for (int i = 0; i < list.size(); i++) {
+                        list.set(i, Component.literal("  ").append(list.get(i)).withStyle(ChatFormatting.GRAY));
+                    }
+
+                    pTooltipComponents.addAll(list);
                 }
             }
         }
