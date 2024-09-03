@@ -229,7 +229,6 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
             if (projectile instanceof AbstractArrow abstractarrow) {
                 abstractarrow.setSoundEvent(SoundEvents.CROSSBOW_HIT);
             }
-
             return projectile;
         }
     }

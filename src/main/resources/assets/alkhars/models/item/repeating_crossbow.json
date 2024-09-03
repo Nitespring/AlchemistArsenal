@@ -44,14 +44,46 @@
         },
         {
             "predicate": {
-                "charged": 1
+                "charged": 1,
+                "alkhars:amount": 1
+            },
+            "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_arrow_x1"
+        },
+        {
+            "predicate": {
+                "charged": 1,
+                "alkhars:amount": 2
+            },
+            "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_arrow_x2"
+        },
+        {
+            "predicate": {
+                "charged": 1,
+                "alkhars:amount": 3
             },
             "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_arrow_x3"
         },
         {
             "predicate": {
                 "charged": 1,
-                "firework": 1
+                "firework": 1,
+                "alkhars:amount": 1
+            },
+            "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_firework_x1"
+        },
+        {
+            "predicate": {
+                "charged": 1,
+                "firework": 1,
+                "alkhars:amount": 2
+            },
+            "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_firework_x2"
+        },
+        {
+            "predicate": {
+                "charged": 1,
+                "firework": 1,
+                "alkhars:amount": 3
             },
             "model": "alkhars:item/repeating_crossbow/repeating_crossbow_loaded_firework_x3"
         }

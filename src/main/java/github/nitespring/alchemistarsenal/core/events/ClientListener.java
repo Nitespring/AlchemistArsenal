@@ -2,6 +2,7 @@ package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.item.AutomaticCrossbow;
+import github.nitespring.alchemistarsenal.common.item.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.renderer.block.model.ItemOverrides;
@@ -94,7 +95,7 @@ public class ClientListener {
                         } else {
                             return CrossbowItem.isCharged(stack) ? 0.0F
                                     : (float) (stack.getUseDuration(player) - player.getUseItemRemainingTicks())
-                                    / (float) CrossbowItem.getChargeDuration(stack, player);
+                                    / (float) RepeatingCrossbow.getChargeDuration(stack, player);
                         }
                     }
             );
@@ -103,12 +104,12 @@ public class ClientListener {
                     ResourceLocation.withDefaultNamespace("pulling"),
                     (stack, level, player, seed) -> player != null
                             && player.isUsingItem() && player.getUseItem() == stack
-                            && !CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+                            && !RepeatingCrossbow.isCharged(stack) ? 1.0F : 0.0F
             );
             ItemProperties.register(
                     ItemInit.REPEATING_CROSSBOW.get(),
                     ResourceLocation.withDefaultNamespace("charged"),
-                    (stack, level, player, seed) -> CrossbowItem.isCharged(stack) ? 1.0F : 0.0F
+                    (stack, level, player, seed) -> RepeatingCrossbow.isCharged(stack) ? 1.0F : 0.0F
             );
             ItemProperties.register(
                     ItemInit.REPEATING_CROSSBOW.get(),
@@ -119,6 +120,17 @@ public class ClientListener {
                         return chargedprojectiles != null && chargedprojectiles.contains(Items.FIREWORK_ROCKET) ? 1.0F : 0.0F;
                     }
             );
+            ItemProperties.register(
+                    ItemInit.REPEATING_CROSSBOW.get(),
+                    ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"amount"),
+                    (stack, level, player, seed) ->
+                    {
+                        ChargedProjectiles chargedprojectiles = stack.get(DataComponents.CHARGED_PROJECTILES);
+
+                        return Math.min(chargedprojectiles.getItems().size(), 3);
+                    }
+            );
+
         });
     }
     @SubscribeEvent
