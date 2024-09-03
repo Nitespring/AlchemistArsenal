@@ -13,7 +13,7 @@ public class InfernalArrowRenderer extends ArrowRenderer {
 
     @Override
     public ResourceLocation getTextureLocation(Entity pEntity) {
-        return ResourceLocation.withDefaultNamespace("textures/entity/projectiles/arrow");
+        return ResourceLocation.withDefaultNamespace("textures/entity/projectiles/arrow.png");
     }
 
 }

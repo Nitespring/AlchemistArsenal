@@ -2,7 +2,9 @@ package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.entity.projectile.BouncyArrow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.DragonArrow;
 import github.nitespring.alchemistarsenal.common.entity.projectile.InfernalArrow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.LightningArrow;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
@@ -24,4 +26,14 @@ public class EntityInit {
             ()->EntityType.Builder.<InfernalArrow>of(InfernalArrow::new, MobCategory.MISC)
                     .sized(0.4F, 0.4F)
                     .build("infernal_arrow"));
+    public static final DeferredHolder<EntityType<?>, EntityType<LightningArrow>> LIGHTNING_ARROW = ENTITY_TYPES.register("lightning_arrow",
+            ()->EntityType.Builder.<LightningArrow>of(LightningArrow::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .build("lightning_arrow"));
+    public static final DeferredHolder<EntityType<?>, EntityType<DragonArrow>> DRAGON_ARROW = ENTITY_TYPES.register("dragon_arrow",
+            ()->EntityType.Builder.<DragonArrow>of(DragonArrow::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .build("dragon_arrow"));
+
+
 }

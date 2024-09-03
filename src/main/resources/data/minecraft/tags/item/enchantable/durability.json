@@ -1,0 +1,8 @@
+{
+"replace" : false,
+"values" : [
+	"alkhars:automatic_crossbow",
+	"alkhars:repeating_crossbow",
+	"alkhars:crossbow_scythe"
+	]
+}

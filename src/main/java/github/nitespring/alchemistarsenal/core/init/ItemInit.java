@@ -3,7 +3,9 @@ package github.nitespring.alchemistarsenal.core.init;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.entity.projectile.BouncyArrow;
 import github.nitespring.alchemistarsenal.common.item.arrows.BouncyArrowItem;
+import github.nitespring.alchemistarsenal.common.item.arrows.DragonArrowItem;
 import github.nitespring.alchemistarsenal.common.item.arrows.InfernalArrowItem;
+import github.nitespring.alchemistarsenal.common.item.arrows.LightningArrowItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
@@ -31,11 +33,11 @@ public class ItemInit {
     public static final DeferredHolder<Item, CrossbowItem> CROSSBOW_SCYTHE = ITEMS.register("crossbow_scythe",
             ()->new CrossbowScythe(Tiers.IRON, 4,-2.8f,new Item.Properties().stacksTo(1).durability(512).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
     public static final DeferredHolder<Item, ArrowItem> DRAGON_ARROW = ITEMS.register("dragon_arrow",
-            ()->new ArrowItem(new Item.Properties()));
+            ()->new DragonArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, BouncyArrowItem> BOUNCY_ARROW = ITEMS.register("bouncy_arrow",
             ()->new BouncyArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, ArrowItem> LIGHTNING_ARROW = ITEMS.register("lightning_arrow",
-            ()->new ArrowItem(new Item.Properties()));
+            ()->new LightningArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, InfernalArrowItem> INFERNAL_ARROW = ITEMS.register("infernal_arrow",
             ()->new InfernalArrowItem(new Item.Properties()));
 

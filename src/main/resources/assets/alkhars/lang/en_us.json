@@ -2,5 +2,13 @@
   "item.alkhars.repeating_crossbow" : "Repeating Crossbow",
   "item.alkhars.automatic_crossbow" : "Automatic Crossbow",
   "item.alkhars.crossbow_scythe" : "Crossbow Scythe",
+  "item.alkhars.lightning_arrow" : "Copper Arrow",
+  "item.alkhars.dragon_arrow" : "Dragon Arrow",
+  "item.alkhars.infernal_arrow" : "Torching Arrow",
+  "item.alkhars.bouncy_arrow" : "Bouncy Arrow",
+  "entity.alkhars.lightning_arrow" : "Copper Arrow",
+  "entity.alkhars.dragon_arrow" : "Dragon Arrow",
+  "entity.alkhars.infernal_arrow" : "Torching Arrow",
+  "entity.alkhars.bouncy_arrow" : "Bouncy Arrow",
   "itemGroup.alkhars.alkhars" : "Alchemist's Arsenal"
 }

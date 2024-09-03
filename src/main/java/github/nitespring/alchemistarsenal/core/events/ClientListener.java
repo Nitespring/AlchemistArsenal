@@ -2,7 +2,9 @@ package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.client.render.BouncyArrowRenderer;
+import github.nitespring.alchemistarsenal.client.render.DragonArrowRenderer;
 import github.nitespring.alchemistarsenal.client.render.InfernalArrowRenderer;
+import github.nitespring.alchemistarsenal.client.render.LightningArrowRenderer;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
@@ -142,6 +144,8 @@ public class ClientListener {
     public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(EntityInit.INFERNAL_ARROW.get(), InfernalArrowRenderer::new);
         event.registerEntityRenderer(EntityInit.BOUNCY_ARROW.get(), BouncyArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.DRAGON_ARROW.get(), DragonArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.LIGHTNING_ARROW.get(), LightningArrowRenderer::new);
     }
     /*@SubscribeEvent
     public static void onClientSetup(RegisterClientExtensionsEvent event) {

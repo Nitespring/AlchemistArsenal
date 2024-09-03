@@ -2,6 +2,8 @@
 "replace" : false,
 "values" : [
 	"alkhars:bouncy_arrow",
-	"alkhars:infernal_arrow"
+	"alkhars:infernal_arrow",
+	"alkhars:lightning_arrow",
+	"alkhars:dragon_arrow"
 	]
 }

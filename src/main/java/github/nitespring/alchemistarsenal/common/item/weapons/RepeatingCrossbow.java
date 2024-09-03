@@ -5,6 +5,7 @@ import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -17,8 +18,11 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
@@ -173,6 +177,46 @@ public class RepeatingCrossbow extends CrossbowItem {
                 if (pShooter instanceof ServerPlayer serverplayer) {
                     CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
                     serverplayer.awardStat(Stats.ITEM_USED.get(pWeapon.getItem()));
+                }
+            }
+        }
+    }
+    @Override
+    protected void shoot(ServerLevel pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pWeapon, List<ItemStack> pProjectileItems, float pVelocity, float pInaccuracy, boolean pIsCrit, @org.jetbrains.annotations.Nullable LivingEntity pTarget) {
+        float f = EnchantmentHelper.processProjectileSpread(pLevel, pWeapon, pShooter, 0.0F);
+        int multiShot = pWeapon.getEnchantmentLevel(pShooter.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(Enchantments.MULTISHOT).get());
+        int amount = 1 + 2*multiShot;
+        if(multiShot>=1) {
+            for (int i = -multiShot; i <= multiShot; i++) {
+                ItemStack itemstack = pProjectileItems.get(0);
+                if (!itemstack.isEmpty()) {
+                    float f4 = (float) (Math.PI * 1 / 3) / multiShot * i * 12;
+                    Projectile projectile = this.createProjectile(pLevel, pShooter, pWeapon, itemstack, pIsCrit);
+                    this.shootProjectile(pShooter, projectile, i, pVelocity, pInaccuracy, f4, pTarget);
+                    pLevel.addFreshEntity(projectile);
+                    pWeapon.hurtAndBreak(this.getDurabilityUse(itemstack), pShooter, LivingEntity.getSlotForHand(pHand));
+                    if (pWeapon.isEmpty()) {
+                        break;
+                    }
+                }
+            }
+        }else{
+            float f1 = pProjectileItems.size() == 1 ? 0.0F : 2.0F * f / (float)(pProjectileItems.size() - 1);
+            float f2 = (float)((pProjectileItems.size() - 1) % 2) * f1 / 2.0F;
+            float f3 = 1.0F;
+
+            for (int i = 0; i < pProjectileItems.size(); i++) {
+                ItemStack itemstack = pProjectileItems.get(i);
+                if (!itemstack.isEmpty()) {
+                    float f4 = f2 + f3 * (float)((i + 1) / 2) * f1;
+                    f3 = -f3;
+                    Projectile projectile = this.createProjectile(pLevel, pShooter, pWeapon, itemstack, pIsCrit);
+                    this.shootProjectile(pShooter, projectile, i, pVelocity, pInaccuracy, f4, pTarget);
+                    pLevel.addFreshEntity(projectile);
+                    pWeapon.hurtAndBreak(this.getDurabilityUse(itemstack), pShooter, LivingEntity.getSlotForHand(pHand));
+                    if (pWeapon.isEmpty()) {
+                        break;
+                    }
                 }
             }
         }
