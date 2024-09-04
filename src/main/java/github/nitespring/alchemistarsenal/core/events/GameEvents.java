@@ -1,6 +1,7 @@
 package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
+import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import github.nitespring.alchemistarsenal.core.init.MobEffectInit;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
@@ -23,9 +25,14 @@ public class GameEvents {
         PotionBrewing.Builder builder = event.getBuilder();
 
         // Will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
+        builder.addContainerRecipe(
+                ItemInit.FERTILIZER.get(),
+                Items.MAGMA_CREAM,
+                ItemInit.ENHANCED_FERTILIZER.get()
+        );
         builder.addMix(
                 Potions.AWKWARD,
-                Items.BONE_MEAL,
+                ItemInit.ENHANCED_FERTILIZER.get(),
                 MobEffectInit.TASTY_POTION
         );
         builder.addMix(

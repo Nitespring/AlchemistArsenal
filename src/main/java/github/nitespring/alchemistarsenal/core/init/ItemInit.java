@@ -48,6 +48,10 @@ public class ItemInit {
             ()->new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> POISON_FLASK = ITEMS.register("poison_flask",
             ()->new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredHolder<Item, Item> FERTILIZER = ITEMS.register("fertilizer",
+            ()->new Item(new Item.Properties().stacksTo(16)));
+    public static final DeferredHolder<Item, Item> ENHANCED_FERTILIZER = ITEMS.register("enhanced_fertilizer",
+            ()->new Item(new Item.Properties().stacksTo(16)));
 
 
 }
