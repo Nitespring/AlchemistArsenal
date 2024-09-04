@@ -1,5 +1,6 @@
 package github.nitespring.alchemistarsenal.client.render;
 
+import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -12,7 +13,7 @@ public class LightningArrowRenderer extends ArrowRenderer {
 
     @Override
     public ResourceLocation getTextureLocation(Entity pEntity) {
-        return ResourceLocation.withDefaultNamespace("textures/entity/projectiles/arrow.png");
+        return ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"textures/entity/projectiles/copper_arrow.png");
     }
 
 }

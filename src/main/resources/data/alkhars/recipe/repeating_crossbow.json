@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#ci",
+        "cCS",
+        "iSL"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:diamond"
+        },
+        "c": {
+            "item": "minecraft:copper_ingot"
+        },
+        "i": {
+            "item": "minecraft:iron_ingot"
+        },
+        "C": {
+            "item": "minecraft:crossbow"
+        },
+        "S": {
+            "item": "minecraft:string"
+        },
+        "L": {
+            "item": "minecraft:lever"
+        }
+    },
+    "result": {
+        "id": "alkhars:repeating_crossbow",
+        "count": 1
+    }
+}

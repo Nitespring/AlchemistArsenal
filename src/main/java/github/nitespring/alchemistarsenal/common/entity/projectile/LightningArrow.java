@@ -39,12 +39,12 @@ public class LightningArrow extends AbstractArrow {
     @Override
     protected ItemStack getPickupItem() {
 
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
+        return ItemInit.LIGHTNING_ARROW.get().getDefaultInstance();
     }
 
     @Override
     protected ItemStack getDefaultPickupItem() {
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
+        return ItemInit.LIGHTNING_ARROW.get().getDefaultInstance();
     }
 
 

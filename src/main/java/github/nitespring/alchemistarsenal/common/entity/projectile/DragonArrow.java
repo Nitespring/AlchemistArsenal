@@ -47,7 +47,11 @@ public class DragonArrow extends AbstractArrow {
     @Override
     protected ItemStack getPickupItem() {
 
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
+        return ItemInit.DRAGON_ARROW.get().getDefaultInstance();
+    }
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return ItemInit.DRAGON_ARROW.get().getDefaultInstance();
     }
     @Override
     public void tick() {
@@ -77,10 +81,7 @@ public class DragonArrow extends AbstractArrow {
         }
 
     }
-    @Override
-    protected ItemStack getDefaultPickupItem() {
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
-    }
+
 
 
     @Override
@@ -95,9 +96,9 @@ public class DragonArrow extends AbstractArrow {
             }
 
             areaeffectcloud.setParticle(ParticleTypes.DRAGON_BREATH);
-            areaeffectcloud.setRadius(2.0F);
+            areaeffectcloud.setRadius(1.5F);
             areaeffectcloud.setDuration(100);
-            areaeffectcloud.setRadiusPerTick((7.0F - areaeffectcloud.getRadius()) / (float)areaeffectcloud.getDuration());
+            areaeffectcloud.setRadiusPerTick((1.5F - areaeffectcloud.getRadius()) / (float)areaeffectcloud.getDuration());
             areaeffectcloud.addEffect(new MobEffectInstance(MobEffects.HARM, 1, 1));
             if (!list.isEmpty()) {
                 for (LivingEntity livingentity : list) {
@@ -112,15 +113,16 @@ public class DragonArrow extends AbstractArrow {
             //this.level().levelEvent(2006, this.blockPosition(), this.isSilent() ? -1 : 1);
 
             this.level().addFreshEntity(areaeffectcloud);
-            this.discard();
+
         }
-        if(!this.isSilent()) {
+        /*if(!this.isSilent()) {
             this.playSound(SoundEvents.DRAGON_FIREBALL_EXPLODE, 0.8f,1.0f);
             if (this.getOwner() != null && this.getOwner().distanceToSqr(this.blockPosition().getX(), this.blockPosition().getY(), this.blockPosition().getZ()) >= 24 * 24) {
                 Vec3 pos = this.getOwner().position();
                 this.getOwner().level().playSound(null, pos.x(),pos.y(),pos.z(),SoundEvents.DRAGON_FIREBALL_EXPLODE,SoundSource.PLAYERS, 0.6f, 1.0f);
             }
-        }
+        }*/
+        this.discard();
     }
 
     @Override

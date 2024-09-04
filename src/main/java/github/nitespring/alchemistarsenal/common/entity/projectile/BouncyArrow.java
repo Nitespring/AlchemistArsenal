@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
@@ -40,7 +41,11 @@ public class BouncyArrow extends AbstractArrow {
     @Override
     protected ItemStack getPickupItem() {
 
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
+        return Items.ARROW.getDefaultInstance();
+    }
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return Items.ARROW.getDefaultInstance();
     }
     @Override
     public void tick() {
@@ -70,10 +75,7 @@ public class BouncyArrow extends AbstractArrow {
         }
     }
 
-    @Override
-    protected ItemStack getDefaultPickupItem() {
-        return ItemInit.BOUNCY_ARROW.get().getDefaultInstance();
-    }
+
 
     @Override
     protected void onHitBlock(BlockHitResult pResult) {

@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "nIA",
+        "ICX",
+        "AXL"
+    ],
+    "key": {
+        "n": {
+            "item": "minecraft:netherite_ingot"
+        },
+        "I": {
+            "item": "minecraft:iron_block"
+        },
+        "A": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "C": {
+            "item": "minecraft:crossbow"
+        },
+        "X": {
+            "item": "minecraft:copper_block"
+        },
+        "L": {
+            "item": "minecraft:lever"
+        }
+    },
+    "result": {
+        "id": "alkhars:automatic_crossbow",
+        "count": 1
+    }
+}

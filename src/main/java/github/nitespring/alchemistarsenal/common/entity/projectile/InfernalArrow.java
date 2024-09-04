@@ -13,6 +13,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -43,7 +44,11 @@ public class InfernalArrow extends AbstractArrow {
     @Override
     protected ItemStack getPickupItem() {
 
-        return ItemInit.INFERNAL_ARROW.get().getDefaultInstance();
+        return Items.ARROW.getDefaultInstance();
+    }
+    @Override
+    protected ItemStack getDefaultPickupItem() {
+        return Items.ARROW.getDefaultInstance();
     }
 
     @Override
@@ -101,10 +106,7 @@ public class InfernalArrow extends AbstractArrow {
 
     }
 
-    @Override
-    protected ItemStack getDefaultPickupItem() {
-        return ItemInit.INFERNAL_ARROW.get().getDefaultInstance();
-    }
+
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);

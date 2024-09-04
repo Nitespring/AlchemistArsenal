@@ -2,10 +2,7 @@ package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.entity.projectile.BouncyArrow;
-import github.nitespring.alchemistarsenal.common.item.arrows.BouncyArrowItem;
-import github.nitespring.alchemistarsenal.common.item.arrows.DragonArrowItem;
-import github.nitespring.alchemistarsenal.common.item.arrows.InfernalArrowItem;
-import github.nitespring.alchemistarsenal.common.item.arrows.LightningArrowItem;
+import github.nitespring.alchemistarsenal.common.item.arrows.*;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
@@ -40,6 +37,8 @@ public class ItemInit {
             ()->new LightningArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, InfernalArrowItem> INFERNAL_ARROW = ITEMS.register("infernal_arrow",
             ()->new InfernalArrowItem(new Item.Properties()));
+    public static final DeferredHolder<Item, ExplosiveArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
+            ()->new ExplosiveArrowItem(new Item.Properties()));
 
 
 }
