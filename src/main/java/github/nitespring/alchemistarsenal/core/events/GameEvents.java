@@ -25,11 +25,11 @@ public class GameEvents {
         PotionBrewing.Builder builder = event.getBuilder();
 
         // Will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
-        builder.addContainerRecipe(
+        /*builder.addContainerRecipe(
                 ItemInit.FERTILIZER.get(),
                 Items.MAGMA_CREAM,
                 ItemInit.ENHANCED_FERTILIZER.get()
-        );
+        );*/
         builder.addMix(
                 Potions.AWKWARD,
                 ItemInit.ENHANCED_FERTILIZER.get(),

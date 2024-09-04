@@ -47,8 +47,16 @@ public class MobEffectInit {
             () -> new Potion());
     public static final DeferredHolder<Potion, Potion> LONG_LEGS_POTION = POTIONS.register("long_legs",
             () -> new Potion(new MobEffectInstance(LONG_LEGS,20000)));
+    public static final DeferredHolder<Potion, Potion> LONGER_LEGS_POTION = POTIONS.register("longer_legs",
+            () -> new Potion(new MobEffectInstance(LONG_LEGS,20000,1)));
+    public static final DeferredHolder<Potion, Potion> LONGEST_LEGS_POTION = POTIONS.register("longest_legs",
+            () -> new Potion(new MobEffectInstance(LONG_LEGS,20000,2)));
     public static final DeferredHolder<Potion, Potion> LONG_ARMS_POTION = POTIONS.register("long_arms",
             () -> new Potion(new MobEffectInstance(LONG_ARMS,20000)));
+    public static final DeferredHolder<Potion, Potion> LONGER_ARMS_POTION = POTIONS.register("longer_arms",
+            () -> new Potion(new MobEffectInstance(LONG_ARMS,20000,1)));
+    public static final DeferredHolder<Potion, Potion> LONGEST_ARMS_POTION = POTIONS.register("longest_arms",
+            () -> new Potion(new MobEffectInstance(LONG_ARMS,20000,2)));
 
 
 }

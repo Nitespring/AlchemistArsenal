@@ -20,8 +20,8 @@
 
   "effect.alkhars.poisonous_claw" : "Poisonous Claws",
   "effect.alkhars.flaming_fist" : "Flaming Fists",
-  "effect.alkhars.long_arm" : "Long Arms",
-  "effect.alkhars.long_legs" : "Long Legs",
+  "effect.alkhars.long_arms" : "Reacher",
+  "effect.alkhars.long_legs" : "Strider",
 
   "itemGroup.alkhars.alkhars" : "Alchemist's Arsenal"
 }

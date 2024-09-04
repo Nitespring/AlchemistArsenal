@@ -2,13 +2,16 @@
     "type": "minecraft:crafting_shaped",
     "category": "equipment",
     "pattern": [
-        "###",
-        "#L#",
-        "###"
+        "L",
+        "S",
+        "F"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:arrow"
+        "S": {
+            "item": "minecraft:stick"
+        },
+        "F": {
+            "item": "minecraft:feather"
         },
         "L": {
             "item": "minecraft:lightning_rod"
@@ -16,6 +19,6 @@
     },
     "result": {
         "id": "alkhars:lightning_arrow",
-        "count": 8
+        "count": 4
     }
 }

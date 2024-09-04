@@ -21,9 +21,12 @@ public class CreativeTabInit {
                     .displayItems((displayParams,output)->{
                         output.accept(ItemInit.BOUNCY_ARROW.get());
                         output.accept(ItemInit.LIGHTNING_ARROW.get());
+                        output.accept(ItemInit.AMETHYST_ARROW.get());
                         output.accept(ItemInit.INFERNAL_ARROW.get());
                         output.accept(ItemInit.EXPLOSIVE_ARROW.get());
                         output.accept(ItemInit.DRAGON_ARROW.get());
+                        output.accept(ItemInit.FERTILIZER.get());
+                        output.accept(ItemInit.ENHANCED_FERTILIZER.get());
                         output.accept(ItemInit.FLAME_IN_A_BOTTLE.get());
                         output.accept(ItemInit.UNSTABLE_CONCOCTION.get());
                         output.accept(ItemInit.POISON_FLASK.get());
