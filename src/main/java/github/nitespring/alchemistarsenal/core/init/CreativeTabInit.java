@@ -24,6 +24,10 @@ public class CreativeTabInit {
                         output.accept(ItemInit.INFERNAL_ARROW.get());
                         output.accept(ItemInit.EXPLOSIVE_ARROW.get());
                         output.accept(ItemInit.DRAGON_ARROW.get());
+                        output.accept(ItemInit.FLAME_IN_A_BOTTLE.get());
+                        output.accept(ItemInit.UNSTABLE_CONCOCTION.get());
+                        output.accept(ItemInit.POISON_FLASK.get());
+                        output.accept(ItemInit.INFERNAL_FLASK.get());
                         output.accept(ItemInit.CROSSBOW_SCYTHE.get());
                         output.accept(ItemInit.REPEATING_CROSSBOW.get());
                         output.accept(ItemInit.AUTOMATIC_CROSSBOW.get());

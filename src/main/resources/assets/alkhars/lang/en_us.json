@@ -6,9 +6,17 @@
   "item.alkhars.dragon_arrow" : "Dragon Arrow",
   "item.alkhars.infernal_arrow" : "Torching Arrow",
   "item.alkhars.bouncy_arrow" : "Bouncy Arrow",
+  "item.alkhars.explosive_arrow" : "Explosive Arrow",
+  "item.alkhars.flame_in_a_bottle" : "Flame in a bottle",
+  "item.alkhars.unstable_concoction" : "Unstable Concoction",
+  "item.alkhars.infernal_flask" : "Infernal Flask",
+  "item.alkhars.poison_flask" : "Poisonous Flask",
+
   "entity.alkhars.lightning_arrow" : "Copper Arrow",
   "entity.alkhars.dragon_arrow" : "Dragon Arrow",
   "entity.alkhars.infernal_arrow" : "Torching Arrow",
   "entity.alkhars.bouncy_arrow" : "Bouncy Arrow",
+  "entity.alkhars.explosive_arrow" : "Bouncy Arrow",
+
   "itemGroup.alkhars.alkhars" : "Alchemist's Arsenal"
 }

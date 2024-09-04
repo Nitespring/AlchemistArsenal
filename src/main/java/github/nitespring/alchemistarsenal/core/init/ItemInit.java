@@ -31,14 +31,23 @@ public class ItemInit {
             ()->new CrossbowScythe(Tiers.IRON, 4,-2.8f,new Item.Properties().stacksTo(1).durability(512).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));
     public static final DeferredHolder<Item, ArrowItem> DRAGON_ARROW = ITEMS.register("dragon_arrow",
             ()->new DragonArrowItem(new Item.Properties()));
-    public static final DeferredHolder<Item, BouncyArrowItem> BOUNCY_ARROW = ITEMS.register("bouncy_arrow",
+    public static final DeferredHolder<Item, ArrowItem> BOUNCY_ARROW = ITEMS.register("bouncy_arrow",
             ()->new BouncyArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, ArrowItem> LIGHTNING_ARROW = ITEMS.register("lightning_arrow",
             ()->new LightningArrowItem(new Item.Properties()));
-    public static final DeferredHolder<Item, InfernalArrowItem> INFERNAL_ARROW = ITEMS.register("infernal_arrow",
+    public static final DeferredHolder<Item, ArrowItem> INFERNAL_ARROW = ITEMS.register("infernal_arrow",
             ()->new InfernalArrowItem(new Item.Properties()));
-    public static final DeferredHolder<Item, ExplosiveArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
+    public static final DeferredHolder<Item, ArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
             ()->new ExplosiveArrowItem(new Item.Properties()));
+
+    public static final DeferredHolder<Item, Item> FLAME_IN_A_BOTTLE = ITEMS.register("flame_in_a_bottle",
+            ()->new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> UNSTABLE_CONCOCTION = ITEMS.register("unstable_concoction",
+            ()->new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> INFERNAL_FLASK = ITEMS.register("infernal_flask",
+            ()->new Item(new Item.Properties()));
+    public static final DeferredHolder<Item, Item> POISON_FLASK = ITEMS.register("poison_flask",
+            ()->new Item(new Item.Properties()));
 
 
 }
