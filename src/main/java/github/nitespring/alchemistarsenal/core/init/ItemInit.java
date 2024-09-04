@@ -41,13 +41,13 @@ public class ItemInit {
             ()->new ExplosiveArrowItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> FLAME_IN_A_BOTTLE = ITEMS.register("flame_in_a_bottle",
-            ()->new Item(new Item.Properties()));
+            ()->new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> UNSTABLE_CONCOCTION = ITEMS.register("unstable_concoction",
-            ()->new Item(new Item.Properties()));
+            ()->new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> INFERNAL_FLASK = ITEMS.register("infernal_flask",
-            ()->new Item(new Item.Properties()));
+            ()->new Item(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> POISON_FLASK = ITEMS.register("poison_flask",
-            ()->new Item(new Item.Properties()));
+            ()->new Item(new Item.Properties().stacksTo(16)));
 
 
 }
