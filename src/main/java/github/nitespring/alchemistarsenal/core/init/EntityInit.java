@@ -35,6 +35,10 @@ public class EntityInit {
             ()->EntityType.Builder.<ExplosiveArrow>of(ExplosiveArrow::new, MobCategory.MISC)
                     .sized(0.4F, 0.4F)
                     .build("explosive_arrow"));
+    public static final DeferredHolder<EntityType<?>, EntityType<FragmentingArrow>> AMETHYST_ARROW = ENTITY_TYPES.register("amethyst_arrow",
+            ()->EntityType.Builder.<FragmentingArrow>of(FragmentingArrow::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .build("amethyst_arrow"));
 
 
 }

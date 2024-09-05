@@ -9,6 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.alchemy.Potion;
@@ -44,19 +45,19 @@ public class MobEffectInit {
 
 
     public static final DeferredHolder<Potion, Potion> TASTY_POTION = POTIONS.register("tasty_potion",
-            () -> new Potion());
+            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SPEED,2000,2)));
     public static final DeferredHolder<Potion, Potion> LONG_LEGS_POTION = POTIONS.register("long_legs",
             () -> new Potion(new MobEffectInstance(LONG_LEGS,20000)));
     public static final DeferredHolder<Potion, Potion> LONGER_LEGS_POTION = POTIONS.register("longer_legs",
-            () -> new Potion(new MobEffectInstance(LONG_LEGS,20000,1)));
+            () -> new Potion(new MobEffectInstance(LONG_LEGS,12000,1)));
     public static final DeferredHolder<Potion, Potion> LONGEST_LEGS_POTION = POTIONS.register("longest_legs",
-            () -> new Potion(new MobEffectInstance(LONG_LEGS,20000,2)));
+            () -> new Potion(new MobEffectInstance(LONG_LEGS,4000,2)));
     public static final DeferredHolder<Potion, Potion> LONG_ARMS_POTION = POTIONS.register("long_arms",
             () -> new Potion(new MobEffectInstance(LONG_ARMS,20000)));
     public static final DeferredHolder<Potion, Potion> LONGER_ARMS_POTION = POTIONS.register("longer_arms",
-            () -> new Potion(new MobEffectInstance(LONG_ARMS,20000,1)));
+            () -> new Potion(new MobEffectInstance(LONG_ARMS,12000,1)));
     public static final DeferredHolder<Potion, Potion> LONGEST_ARMS_POTION = POTIONS.register("longest_arms",
-            () -> new Potion(new MobEffectInstance(LONG_ARMS,20000,2)));
+            () -> new Potion(new MobEffectInstance(LONG_ARMS,4000,2)));
 
 
 }

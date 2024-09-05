@@ -16,6 +16,7 @@ import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Random;
 
 public class LightningArrow extends AbstractArrow {
 
@@ -52,17 +53,19 @@ public class LightningArrow extends AbstractArrow {
     protected void onHit(HitResult pResult) {
         super.onHit(pResult);
         if(this.level().isThundering()) {
-            if (!this.level().isClientSide) {
+            if(new Random().nextFloat()<=0.3f) {
+                if (!this.level().isClientSide) {
 
-                LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, this.level());
-                lightning.setPos(this.position());
-                if (this.getOwner() instanceof ServerPlayer player) {
-                    lightning.setCause(player);
+                    LightningBolt lightning = new LightningBolt(EntityType.LIGHTNING_BOLT, this.level());
+                    lightning.setPos(this.position());
+                    if (this.getOwner() instanceof ServerPlayer player) {
+                        lightning.setCause(player);
+                    }
+
+
+                    this.level().addFreshEntity(lightning);
+                    //this.discard();
                 }
-
-
-                this.level().addFreshEntity(lightning);
-                //this.discard();
             }
         }
     }
