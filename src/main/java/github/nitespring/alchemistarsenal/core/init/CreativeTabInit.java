@@ -24,6 +24,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.AMETHYST_ARROW.get());
                         output.accept(ItemInit.INFERNAL_ARROW.get());
                         output.accept(ItemInit.EXPLOSIVE_ARROW.get());
+                        output.accept(ItemInit.WIND_ARROW.get());
                         output.accept(ItemInit.DRAGON_ARROW.get());
                         output.accept(ItemInit.FERTILIZER.get());
                         output.accept(ItemInit.ENHANCED_FERTILIZER.get());

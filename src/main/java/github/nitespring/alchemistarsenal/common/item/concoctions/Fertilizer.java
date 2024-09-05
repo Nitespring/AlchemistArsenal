@@ -21,6 +21,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.BaseCoralWallFanBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
@@ -39,7 +40,6 @@ public class Fertilizer extends Item {
             if (applyBonemeal(pContext.getItemInHand(), level, blockpos, pContext.getPlayer())) {
                 if (!level.isClientSide) {
                     pContext.getPlayer().gameEvent(GameEvent.ITEM_INTERACT_FINISH);
-                    level.levelEvent(1505, blockpos, 15);
                 }
 
                 return InteractionResult.sidedSuccess(level.isClientSide);

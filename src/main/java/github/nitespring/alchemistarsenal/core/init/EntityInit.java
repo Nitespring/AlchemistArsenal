@@ -39,6 +39,10 @@ public class EntityInit {
             ()->EntityType.Builder.<FragmentingArrow>of(FragmentingArrow::new, MobCategory.MISC)
                     .sized(0.4F, 0.4F)
                     .build("amethyst_arrow"));
+    public static final DeferredHolder<EntityType<?>, EntityType<WindArrow>> WIND_ARROW = ENTITY_TYPES.register("wind_arrow",
+            ()->EntityType.Builder.<WindArrow>of(WindArrow::new, MobCategory.MISC)
+                    .sized(0.4F, 0.4F)
+                    .build("wind_arrow"));
     public static final DeferredHolder<EntityType<?>, EntityType<FireBottle>> FIRE_BOTTLE = ENTITY_TYPES.register("bottle_of_flame",
             ()->EntityType.Builder.<FireBottle>of(FireBottle::new, MobCategory.MISC)
                     .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10)

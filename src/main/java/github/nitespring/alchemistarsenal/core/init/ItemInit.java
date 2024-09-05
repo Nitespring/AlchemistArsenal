@@ -41,6 +41,8 @@ public class ItemInit {
             ()->new ExplosiveArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, ArrowItem> AMETHYST_ARROW = ITEMS.register("amethyst_arrow",
             ()->new ArrowItem(new Item.Properties()));
+    public static final DeferredHolder<Item, ArrowItem> WIND_ARROW = ITEMS.register("wind_arrow",
+            ()->new WindArrowItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> FLAME_IN_A_BOTTLE = ITEMS.register("flame_in_a_bottle",
             ()->new FireBottleItem(new Item.Properties().stacksTo(16)));
