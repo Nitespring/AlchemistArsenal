@@ -1,12 +1,12 @@
 package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
-import github.nitespring.alchemistarsenal.common.entity.projectile.*;
-import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.*;
+import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.ExplosiveBottle;
+import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.FireBottle;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -39,6 +39,15 @@ public class EntityInit {
             ()->EntityType.Builder.<FragmentingArrow>of(FragmentingArrow::new, MobCategory.MISC)
                     .sized(0.4F, 0.4F)
                     .build("amethyst_arrow"));
+    public static final DeferredHolder<EntityType<?>, EntityType<FireBottle>> FIRE_BOTTLE = ENTITY_TYPES.register("bottle_of_flame",
+            ()->EntityType.Builder.<FireBottle>of(FireBottle::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10)
+                    .build("bottle_of_flame"));
+    public static final DeferredHolder<EntityType<?>, EntityType<ExplosiveBottle>> EXPLOSIVE_BOTTLE = ENTITY_TYPES.register("unstable_concoction",
+            ()->EntityType.Builder.<ExplosiveBottle>of(ExplosiveBottle::new, MobCategory.MISC)
+                    .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10)
+                    .build("unstable_concoction"));
+
 
 
 }

@@ -27,9 +27,6 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import javax.annotation.Nullable;
 
 public class Fertilizer extends Item {
-    public static final int GRASS_SPREAD_WIDTH = 3;
-    public static final int GRASS_SPREAD_HEIGHT = 1;
-    public static final int GRASS_COUNT_MULTIPLIER = 3;
     public Fertilizer(Properties properties) {
         super(properties);
     }

@@ -1,7 +1,6 @@
 package github.nitespring.alchemistarsenal.common.item.arrows;
 
-import github.nitespring.alchemistarsenal.common.entity.projectile.FragmentingArrow;
-import github.nitespring.alchemistarsenal.common.entity.projectile.LightningArrow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.FragmentingArrow;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;

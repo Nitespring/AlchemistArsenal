@@ -7,6 +7,7 @@ import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
@@ -144,6 +145,9 @@ public class ClientListener {
         event.registerEntityRenderer(EntityInit.DRAGON_ARROW.get(), DragonArrowRenderer::new);
         event.registerEntityRenderer(EntityInit.LIGHTNING_ARROW.get(), LightningArrowRenderer::new);
         event.registerEntityRenderer(EntityInit.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.AMETHYST_ARROW.get(), AmethystArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.FIRE_BOTTLE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(EntityInit.EXPLOSIVE_BOTTLE.get(), ThrownItemRenderer::new);
     }
     /*@SubscribeEvent
     public static void onClientSetup(RegisterClientExtensionsEvent event) {

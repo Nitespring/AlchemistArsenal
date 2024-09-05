@@ -1,7 +1,6 @@
 package github.nitespring.alchemistarsenal.common.item.arrows;
 
-import github.nitespring.alchemistarsenal.common.entity.projectile.DragonArrow;
-import github.nitespring.alchemistarsenal.common.entity.projectile.InfernalArrow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.DragonArrow;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;

@@ -1,10 +1,9 @@
 package github.nitespring.alchemistarsenal.common.item.arrows;
 
-import github.nitespring.alchemistarsenal.common.entity.projectile.BouncyArrow;
+import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.BouncyArrow;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;

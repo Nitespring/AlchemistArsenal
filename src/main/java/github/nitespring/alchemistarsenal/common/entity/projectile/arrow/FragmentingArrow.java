@@ -1,4 +1,4 @@
-package github.nitespring.alchemistarsenal.common.entity.projectile;
+package github.nitespring.alchemistarsenal.common.entity.projectile.arrow;
 
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;

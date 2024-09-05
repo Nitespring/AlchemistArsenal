@@ -1,11 +1,8 @@
 package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
-import github.nitespring.alchemistarsenal.common.entity.projectile.BouncyArrow;
 import github.nitespring.alchemistarsenal.common.item.arrows.*;
-import github.nitespring.alchemistarsenal.common.item.concoctions.Fertilizer;
-import github.nitespring.alchemistarsenal.common.item.concoctions.FlamingFlask;
-import github.nitespring.alchemistarsenal.common.item.concoctions.PoisonFlask;
+import github.nitespring.alchemistarsenal.common.item.concoctions.*;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
@@ -46,9 +43,9 @@ public class ItemInit {
             ()->new ArrowItem(new Item.Properties()));
 
     public static final DeferredHolder<Item, Item> FLAME_IN_A_BOTTLE = ITEMS.register("flame_in_a_bottle",
-            ()->new Item(new Item.Properties().stacksTo(16)));
+            ()->new FireBottleItem(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> UNSTABLE_CONCOCTION = ITEMS.register("unstable_concoction",
-            ()->new Item(new Item.Properties().stacksTo(16)));
+            ()->new ExplosiveBottleItem(new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> INFERNAL_FLASK = ITEMS.register("infernal_flask",
             ()->new FlamingFlask(new Item.Properties().stacksTo(8)));
     public static final DeferredHolder<Item, Item> POISON_FLASK = ITEMS.register("poison_flask",
