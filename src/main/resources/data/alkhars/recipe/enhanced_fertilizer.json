@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DAD",
+    "ECE",
+    "DBD"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:magma_cream"
+    },
+    "B": {
+      "item": "minecraft:honey_bottle"
+    },
+    "C": {
+      "item": "alkhars:fertilizer"
+    },
+    "D": {
+      "item": "minecraft:bone_meal"
+    },
+    "E": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "result": {
+    "id": "alkhars:enhanced_fertilizer",
+    "count": 1
+  }
+}

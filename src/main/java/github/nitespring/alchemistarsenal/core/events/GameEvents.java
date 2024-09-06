@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.brewing.BrewingRecipe;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
@@ -49,11 +50,6 @@ public class GameEvents {
         PotionBrewing.Builder builder = event.getBuilder();
 
         // Will add brewing recipes for all container potions (e.g. potion, splash potion, lingering potion)
-        /*builder.addContainerRecipe(
-                ItemInit.FERTILIZER.get(),
-                Items.MAGMA_CREAM,
-                ItemInit.ENHANCED_FERTILIZER.get()
-        );*/
         builder.addMix(
                 Potions.AWKWARD,
                 ItemInit.ENHANCED_FERTILIZER.get(),

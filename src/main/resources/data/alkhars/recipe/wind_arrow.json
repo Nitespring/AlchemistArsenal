@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        " # ",
+        "#T#",
+        " # "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:arrow"
+        },
+        "T": {
+            "item": "minecraft:wind_charge"
+        }
+    },
+    "result": {
+        "id": "alkhars:wind_arrow",
+        "count": 4
+    }
+}

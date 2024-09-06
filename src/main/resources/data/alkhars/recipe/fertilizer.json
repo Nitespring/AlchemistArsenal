@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "DAD",
+    "EBE",
+    "DCD"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:mud"
+    },
+    "B": {
+      "item": "minecraft:gunpowder"
+    },
+    "C": {
+      "item": "minecraft:potion"
+    },
+    "D": {
+      "item": "minecraft:bone_meal"
+    },
+    "E": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "result": {
+    "id": "alkhars:fertilizer",
+    "count": 1
+  }
+}

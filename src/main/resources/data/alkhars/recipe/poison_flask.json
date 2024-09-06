@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "EAE",
+    "CBC",
+    "FDF"
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:spider_eye"
+    },
+    "B": {
+      "item": "alkhars:unstable_concoction"
+    },
+    "C": {
+      "item": "minecraft:redstone"
+    },
+    "D": {
+      "item": "minecraft:blaze_powder"
+    },
+    "E": {
+      "item": "minecraft:bone_meal"
+    },
+    "F": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "id": "alkhars:poison_flask",
+    "count": 1
+  }
+}
