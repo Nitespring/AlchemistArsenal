@@ -134,8 +134,8 @@ public class RepeatingCrossbow extends CrossbowItem {
 
     public static boolean isCharged(ItemStack pCrossbowStack) {
         ChargedProjectiles chargedprojectiles1 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
-        ChargedProjectiles chargedprojectiles2 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
-        ChargedProjectiles chargedprojectiles3 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
+        ChargedProjectiles chargedprojectiles2 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES2);
+        ChargedProjectiles chargedprojectiles3 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES3);
         return !chargedprojectiles1.isEmpty();
     }
 

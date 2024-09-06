@@ -79,8 +79,5 @@ public class LightningArrow extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
     }
-    @Override
-    public double getBaseDamage() {
-        return super.getBaseDamage();
-    }
+
 }

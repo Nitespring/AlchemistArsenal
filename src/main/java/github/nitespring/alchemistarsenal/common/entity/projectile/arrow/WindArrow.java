@@ -63,7 +63,7 @@ public class WindArrow extends AbstractArrow {
         double ox = mov.x;
         double oy = mov.y;
         double oz = mov.z;
-        if(this.isCritArrow()) {
+        //if(this.isCritArrow()) {
             for (int i = 0; i < 2; i++) {
                 this.level().addParticle(ParticleTypes.GUST,
                         this.getX() + ox * (double) i / 4.0 + 0.5 * (rng.nextFloat() - 0.5),
@@ -71,13 +71,13 @@ public class WindArrow extends AbstractArrow {
                         this.getZ() + oz * (double) i / 4.0 + 0.5 * (rng.nextFloat() - 0.5),
                         -0.05*ox + 0.05 * (rng.nextFloat() - 0.5), -0.05*oy - 0.1 + 0.05 * (rng.nextFloat() - 0.5), -0.05*oz + 0.05 * (rng.nextFloat() - 0.5));
             }
-        }else{
+        /*}else{
             this.level().addParticle(ParticleTypes.SMALL_GUST,
                     this.getX() + ox + 0.5 * (rng.nextFloat() - 0.5),
                     this.getY() + oy + 0.5 * (rng.nextFloat() - 0.5),
                     this.getZ() + oz + 0.5 * (rng.nextFloat() - 0.5),
                     -0.01*ox + 0.05 * (rng.nextFloat() - 0.5), -0.01*oy - 0.1 + 0.05 * (rng.nextFloat() - 0.5), -0.01*oz + 0.05 * (rng.nextFloat() - 0.5));
-        }
+        }*/
     }
 
     @Override
@@ -118,8 +118,5 @@ public class WindArrow extends AbstractArrow {
     protected void onHitEntity(EntityHitResult pResult) {
         super.onHitEntity(pResult);
     }
-    @Override
-    public double getBaseDamage() {
-        return super.getBaseDamage();
-    }
+
 }

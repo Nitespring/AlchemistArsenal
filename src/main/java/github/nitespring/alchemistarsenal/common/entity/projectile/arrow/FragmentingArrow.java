@@ -5,12 +5,18 @@ import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
@@ -80,15 +86,24 @@ public class FragmentingArrow extends AbstractArrow {
         this.spawnShrapnel(pos0.x(),pos0.y()+0.1f+this.getBbHeight()/2,pos0.z(), pResult.getEntity().getBbWidth()+0.25f);
 
     }
-    @Override
-    public double getBaseDamage() {
-        return super.getBaseDamage();
-    }
 
     public void spawnShrapnel(double x0,double y0,double z0, double d){
+        float movementSpeed = (float)this.getDeltaMovement().length();
+        double baseArrowDamage = this.getBaseDamage();
+        if (this.getWeaponItem() != null ) {
+            baseArrowDamage = baseArrowDamage + this.getWeaponItem().getEnchantmentLevel(
+                    this.level().registryAccess().registry(Registries.ENCHANTMENT).get()
+                            .getHolder(Enchantments.POWER).get());
+        }
+        int approximateArrowDamage = Mth.ceil(Mth.clamp((double)movementSpeed * baseArrowDamage, 0.0, 2.147483647E9));
+        if (this.isCritArrow()) {
+            long k = (long)this.random.nextInt(approximateArrowDamage / 2 + 2);
+            approximateArrowDamage = (int)Math.min(k + (long)approximateArrowDamage, 2147483647L);
+        }
+
         Random rand = new Random();
         double oVarI = rand.nextFloat() * Math.PI/2;
-        for(int i =-1; i<=1;i++){
+        for(int i = -1; i<=1; i++){
             double yVarI = i * Math.PI/3;
             for(int j = 0; j<= 5; j++){
                 double yVarII = rand.nextFloat() * Math.PI/6;
@@ -118,17 +133,20 @@ public class FragmentingArrow extends AbstractArrow {
                             float a = 0.2f;
                             shrapnel.accelerationPower = a;
                             shrapnel.setDeltaMovement(aim.scale(a));
-                            this.level().addFreshEntity(shrapnel);
-                            if (this.isOnFire()) {
-                                shrapnel.igniteForSeconds(15);
+                            shrapnel.setDamage(approximateArrowDamage*0.75f);
+                            if(this.isOnFire()){
+                                shrapnel.setFire(true);
                             }
+                            this.level().addFreshEntity(shrapnel);
+                            /*if (this.getWeaponItem().getEnchantmentLevel(
+                                    this.level().registryAccess().registry(Registries.ENCHANTMENT).get()
+                                            .getHolder(Enchantments.POWER).get())>0) {*/
+
+
                         }
                     }
                 }
-
             }
-
-
         }
 
 

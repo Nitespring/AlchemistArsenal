@@ -146,8 +146,5 @@ public class InfernalArrow extends AbstractArrow {
             level().gameEvent(this, GameEvent.BLOCK_PLACE, blockPos);
         }
     }
-    @Override
-    public double getBaseDamage() {
-        return super.getBaseDamage()+3;
-    }
+
 }

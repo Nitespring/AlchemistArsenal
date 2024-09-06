@@ -23,7 +23,9 @@ import net.minecraft.world.phys.Vec3;
 public class Shrapnel extends AbstractHurtingProjectile {
     protected int lifeTicks = 0;
     protected int maxLifeTicks = 7;
-    protected float damage = 2.0f;
+    protected float damage = 6.0f;
+    protected boolean fire = false;
+
     public Shrapnel(EntityType<? extends AbstractHurtingProjectile> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -44,6 +46,9 @@ public class Shrapnel extends AbstractHurtingProjectile {
         this.setOwner(pOwner);
     }
 
+    public void setFire(boolean fire) {
+        this.fire = fire;
+    }
 
     @Override
     public void tick() {
@@ -69,21 +74,33 @@ public class Shrapnel extends AbstractHurtingProjectile {
                 0.0, 0.0, 0.0);
     }
 
+    public void setDamage(float damage) {
+        this.damage = damage;
+    }
+
     @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         if(this.getOwner() instanceof LivingEntity livingEntity) {
-            result.getEntity().hurt(this.level().damageSources().mobProjectile(this, livingEntity), 6.0f);
+            result.getEntity().hurt(this.level().damageSources().mobProjectile(this, livingEntity), this.damage);
         }else{
-            result.getEntity().hurt(this.level().damageSources().mobProjectile(this, null), 6.0f);
+            result.getEntity().hurt(this.level().damageSources().mobProjectile(this, null), this.damage);
         }
-        if(this.isOnFire()){
+        if(fire){
             result.getEntity().igniteForSeconds(4);
         }
         playSound(SoundEvents.GLASS_BREAK);
         this.discard();
     }
 
+    @Override
+    public boolean isOnFire() {
+        return super.isOnFire();
+    }
+    @Override
+    public boolean fireImmune() {
+        return true;
+    }
     @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
@@ -94,7 +111,7 @@ public class Shrapnel extends AbstractHurtingProjectile {
 
     @Override
     public boolean displayFireAnimation() {
-        return false;
+        return this.isOnFire();
     }
 
     @Override

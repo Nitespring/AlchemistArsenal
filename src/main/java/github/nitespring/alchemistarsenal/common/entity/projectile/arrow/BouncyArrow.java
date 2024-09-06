@@ -113,8 +113,5 @@ public class BouncyArrow extends AbstractArrow {
         super.onHitEntity(pResult);
     }
 
-    @Override
-    public double getBaseDamage() {
-        return super.getBaseDamage();
-    }
+
 }

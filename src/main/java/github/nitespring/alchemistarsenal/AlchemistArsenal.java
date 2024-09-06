@@ -1,6 +1,9 @@
 package github.nitespring.alchemistarsenal;
 
+import github.nitespring.alchemistarsenal.core.events.GameEvents;
 import github.nitespring.alchemistarsenal.core.init.*;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -21,6 +24,8 @@ public class AlchemistArsenal
     public AlchemistArsenal(IEventBus modEventBus, ModContainer modContainer)
     {
         //NeoForge.EVENT_BUS.register(this);
+        modEventBus.addListener(GameEvents::commonSetup);
+
         DataComponentInit.DATA_COMPONENTS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
@@ -28,7 +33,11 @@ public class AlchemistArsenal
         MobEffectInit.POTIONS.register(modEventBus);
         CreativeTabInit.TABS.register(modEventBus);
 
+
+
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
+
+
 
 }

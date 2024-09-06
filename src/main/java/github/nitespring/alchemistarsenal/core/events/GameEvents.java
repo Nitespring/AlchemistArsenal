@@ -11,16 +11,40 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
 @EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.GAME)
 public class GameEvents {
 
+
+    public static void commonSetup(final FMLCommonSetupEvent event)
+    {
+        event.enqueueWork(
+                () -> {
+                    DispenserBlock.registerProjectileBehavior(ItemInit.DRAGON_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.BOUNCY_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.EXPLOSIVE_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.AMETHYST_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.LIGHTNING_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.WIND_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.INFERNAL_ARROW.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.UNSTABLE_CONCOCTION.get());
+                    DispenserBlock.registerProjectileBehavior(ItemInit.FLAME_IN_A_BOTTLE.get());
+
+
+                }
+        );
+    }
+
+
     @SubscribeEvent
     public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
+        DispenserBlock.registerProjectileBehavior(ItemInit.AMETHYST_ARROW.get().asItem());
         // Gets the builder to add recipes to
         PotionBrewing.Builder builder = event.getBuilder();
 
@@ -41,11 +65,43 @@ public class GameEvents {
                 MobEffectInit.LONG_ARMS_POTION
         );
         builder.addMix(
+                MobEffectInit.LONG_ARMS_POTION,
+                Items.REDSTONE,
+                MobEffectInit.LONGER_LONG_ARMS_POTION
+        );
+        builder.addMix(
+                MobEffectInit.LONG_ARMS_POTION,
+                Items.GLOWSTONE_DUST,
+                MobEffectInit.LONGER_ARMS_POTION
+        );
+        builder.addMix(
+                MobEffectInit.LONGER_ARMS_POTION,
+                Items.GLOWSTONE,
+                MobEffectInit.LONGEST_ARMS_POTION
+        );
+        builder.addMix(
                 MobEffectInit.TASTY_POTION,
                 Items.SUGAR,
                 MobEffectInit.LONG_LEGS_POTION
         );
+        builder.addMix(
+                MobEffectInit.LONG_LEGS_POTION,
+                Items.REDSTONE,
+                MobEffectInit.LONGER_LONG_LEGS_POTION
+        );
+        builder.addMix(
+                MobEffectInit.LONG_LEGS_POTION,
+                Items.GLOWSTONE_DUST,
+                MobEffectInit.LONGER_LEGS_POTION
+        );
+        builder.addMix(
+                MobEffectInit.LONGER_LEGS_POTION,
+                Items.GLOWSTONE,
+                MobEffectInit.LONGEST_LEGS_POTION
+        );
     }
+
+
 
 
 
