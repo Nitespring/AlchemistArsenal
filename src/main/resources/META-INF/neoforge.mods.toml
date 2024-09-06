@@ -14,7 +14,7 @@ version="${mod_version}"
 displayName="${mod_name}" 
 
 
-#logoFile="examplemod.png" 
+logoFile="logo.png"
 
 #credits="" 
 

@@ -54,9 +54,9 @@ public class ItemInit {
     public static final DeferredHolder<Item, Item> POISON_FLASK = ITEMS.register("poison_flask",
             ()->new PoisonFlask(new Item.Properties().stacksTo(8)));
     public static final DeferredHolder<Item, Item> FERTILIZER = ITEMS.register("fertilizer",
-            ()->new Fertilizer(new Item.Properties().stacksTo(16)));
+            ()->new Fertilizer(1,1,new Item.Properties().stacksTo(16)));
     public static final DeferredHolder<Item, Item> ENHANCED_FERTILIZER = ITEMS.register("enhanced_fertilizer",
-            ()->new Fertilizer(new Item.Properties().stacksTo(16)));
+            ()->new Fertilizer(2,3,new Item.Properties().stacksTo(16)));
 
 
 }

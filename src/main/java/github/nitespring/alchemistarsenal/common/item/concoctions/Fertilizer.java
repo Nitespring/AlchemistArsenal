@@ -18,150 +18,57 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.BaseCoralWallFanBlock;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 import javax.annotation.Nullable;
 
 public class Fertilizer extends Item {
-    public Fertilizer(Properties properties) {
+    private final int intensity;
+    private final int range;
+    public Fertilizer(int range, int intensity, Properties properties) {
         super(properties);
+        this.range=range;
+        this.intensity=intensity;
     }
 
-        @Override
-        public InteractionResult useOn(UseOnContext pContext) {
-            Level level = pContext.getLevel();
-            BlockPos blockpos = pContext.getClickedPos();
-            BlockPos blockpos1 = blockpos.relative(pContext.getClickedFace());
-            if (applyBonemeal(pContext.getItemInHand(), level, blockpos, pContext.getPlayer())) {
-                if (!level.isClientSide) {
-                    pContext.getPlayer().gameEvent(GameEvent.ITEM_INTERACT_FINISH);
-                }
-
-                return InteractionResult.sidedSuccess(level.isClientSide);
-            } else {
-                BlockState blockstate = level.getBlockState(blockpos);
-                boolean flag = blockstate.isFaceSturdy(level, blockpos, pContext.getClickedFace());
-                if (flag && growWaterPlant(pContext.getItemInHand(), level, blockpos1, pContext.getClickedFace())) {
-                    if (!level.isClientSide) {
-                        pContext.getPlayer().gameEvent(GameEvent.ITEM_INTERACT_FINISH);
-                        level.levelEvent(1505, blockpos1, 15);
-                    }
-
-                    return InteractionResult.sidedSuccess(level.isClientSide);
-                } else {
-                    return InteractionResult.PASS;
-                }
-            }
-        }
-
-        @Deprecated //Forge: Use Player/Hand version
-        public static boolean growCrop(ItemStack pStack, Level pLevel, BlockPos pPos) {
-            if (pLevel instanceof net.minecraft.server.level.ServerLevel)
-                return applyBonemeal(pStack, pLevel, pPos, null);
-            return false;
-        }
-
-        public static boolean applyBonemeal(ItemStack p_40628_, Level p_40629_, BlockPos p_40630_, @Nullable net.minecraft.world.entity.player.Player player) {
-            BlockState blockstate = p_40629_.getBlockState(p_40630_);
-            var event = net.neoforged.neoforge.event.EventHooks.fireBonemealEvent(player, p_40629_, p_40630_, blockstate, p_40628_);
-            if (event.isCanceled()) return event.isSuccessful();
-            if (blockstate.getBlock() instanceof BonemealableBlock bonemealableblock && bonemealableblock.isValidBonemealTarget(p_40629_, p_40630_, blockstate)) {
-                if (p_40629_ instanceof ServerLevel) {
-                    if (bonemealableblock.isBonemealSuccess(p_40629_, p_40629_.random, p_40630_, blockstate)) {
-                        bonemealableblock.performBonemeal((ServerLevel)p_40629_, p_40629_.random, p_40630_, blockstate);
-                    }
-
-                    p_40628_.shrink(1);
-                }
-
-                return true;
-            }
-
-            return false;
-        }
-
-        public static boolean growWaterPlant(ItemStack pStack, Level pLevel, BlockPos pPos, @Nullable Direction pClickedSide) {
-            if (pLevel.getBlockState(pPos).is(Blocks.WATER) && pLevel.getFluidState(pPos).getAmount() == 8) {
-                if (!(pLevel instanceof ServerLevel)) {
-                    return true;
-                } else {
-                    RandomSource randomsource = pLevel.getRandom();
-
-                    label78:
-                    for (int i = 0; i < 128; i++) {
-                        BlockPos blockpos = pPos;
-                        BlockState blockstate = Blocks.SEAGRASS.defaultBlockState();
-
-                        for (int j = 0; j < i / 16; j++) {
-                            blockpos = blockpos.offset(
-                                    randomsource.nextInt(3) - 1, (randomsource.nextInt(3) - 1) * randomsource.nextInt(3) / 2, randomsource.nextInt(3) - 1
-                            );
-                            if (pLevel.getBlockState(blockpos).isCollisionShapeFullBlock(pLevel, blockpos)) {
-                                continue label78;
-                            }
-                        }
-
-                        Holder<Biome> holder = pLevel.getBiome(blockpos);
-                        if (holder.is(BiomeTags.PRODUCES_CORALS_FROM_BONEMEAL)) {
-                            if (i == 0 && pClickedSide != null && pClickedSide.getAxis().isHorizontal()) {
-                                blockstate = BuiltInRegistries.BLOCK
-                                        .getRandomElementOf(BlockTags.WALL_CORALS, pLevel.random)
-                                        .map(p_204100_ -> p_204100_.value().defaultBlockState())
-                                        .orElse(blockstate);
-                                if (blockstate.hasProperty(BaseCoralWallFanBlock.FACING)) {
-                                    blockstate = blockstate.setValue(BaseCoralWallFanBlock.FACING, pClickedSide);
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        if(!context.getLevel().isClientSide()) {
+        BlockPos pos = context.getClickedPos();
+        BlockState block = context.getLevel().getBlockState(pos);
+        if(block.getBlock() instanceof BonemealableBlock bonemealableblock
+                && bonemealableblock.isValidBonemealTarget(context.getLevel(),pos,block)) {
+            for (int i = -range; i <= range; i++) {
+                for (int k = -range; k <= range; k++) {
+                        for (int j = -range; j <= range; j++) {
+                            BlockPos pos1 = new BlockPos(pos.getX() + i, pos.getY()+j, pos.getZ() + k);
+                            BlockState block1 = context.getLevel().getBlockState(pos1);
+                            if (block1.getBlock() instanceof BonemealableBlock bonemealableblock1
+                                    && bonemealableblock1.isValidBonemealTarget(context.getLevel(), pos1, block1)) {
+                                for (int n = 0; n < intensity; n++) {
+                                    bonemealableblock1.performBonemeal(
+                                            (ServerLevel) context.getLevel(), context.getLevel().getRandom(), pos1, block1);
                                 }
-                            } else if (randomsource.nextInt(4) == 0) {
-                                blockstate = BuiltInRegistries.BLOCK
-                                        .getRandomElementOf(BlockTags.UNDERWATER_BONEMEALS, pLevel.random)
-                                        .map(p_204095_ -> p_204095_.value().defaultBlockState())
-                                        .orElse(blockstate);
-                            }
-                        }
-
-                        if (blockstate.is(BlockTags.WALL_CORALS, p_204093_ -> p_204093_.hasProperty(BaseCoralWallFanBlock.FACING))) {
-                            for (int k = 0; !blockstate.canSurvive(pLevel, blockpos) && k < 4; k++) {
-                                blockstate = blockstate.setValue(BaseCoralWallFanBlock.FACING, Direction.Plane.HORIZONTAL.getRandomDirection(randomsource));
-                            }
-                        }
-
-                        if (blockstate.canSurvive(pLevel, blockpos)) {
-                            BlockState blockstate1 = pLevel.getBlockState(blockpos);
-                            if (blockstate1.is(Blocks.WATER) && pLevel.getFluidState(blockpos).getAmount() == 8) {
-                                pLevel.setBlock(blockpos, blockstate, 3);
-                            } else if (blockstate1.is(Blocks.SEAGRASS) && randomsource.nextInt(10) == 0) {
-                                ((BonemealableBlock)Blocks.SEAGRASS).performBonemeal((ServerLevel)pLevel, randomsource, blockpos, blockstate1);
+                                context.getPlayer().gameEvent(GameEvent.ITEM_INTERACT_FINISH);
+                                context.getLevel().levelEvent(1505, pos1, 15);
                             }
                         }
                     }
-
-                    pStack.shrink(1);
-                    return true;
                 }
-            } else {
-                return false;
+            context.getItemInHand().consume(1, context.getPlayer());
+                /*if(!context.getPlayer().hasInfiniteMaterials()){
+                    if(context.getPlayer().)
+                    context.getPlayer().setItemInHand();
+                }*/
+            return InteractionResult.sidedSuccess(context.getLevel().isClientSide);
             }
         }
 
-        public static void addGrowthParticles(LevelAccessor pLevel, BlockPos pPos, int pData) {
-            BlockState blockstate = pLevel.getBlockState(pPos);
-            if (blockstate.getBlock() instanceof BonemealableBlock bonemealableblock) {
-                BlockPos blockpos = bonemealableblock.getParticlePos(pPos);
-                switch (bonemealableblock.getType()) {
-                    case NEIGHBOR_SPREADER:
-                        ParticleUtils.spawnParticles(pLevel, blockpos, pData * 3, 3.0, 1.0, false, ParticleTypes.HAPPY_VILLAGER);
-                        break;
-                    case GROWER:
-                        ParticleUtils.spawnParticleInBlock(pLevel, blockpos, pData, ParticleTypes.HAPPY_VILLAGER);
-                }
-            } else if (blockstate.is(Blocks.WATER)) {
-                ParticleUtils.spawnParticles(pLevel, pPos, pData * 3, 3.0, 1.0, false, ParticleTypes.HAPPY_VILLAGER);
-            }
-        }
+        return InteractionResult.PASS;
+
+    }
+
 
 }
