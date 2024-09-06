@@ -1,6 +1,7 @@
 package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
+import github.nitespring.alchemistarsenal.common.entity.projectile.Shrapnel;
 import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.*;
 import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.ExplosiveBottle;
 import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.FireBottle;
@@ -51,7 +52,10 @@ public class EntityInit {
             ()->EntityType.Builder.<ExplosiveBottle>of(ExplosiveBottle::new, MobCategory.MISC)
                     .sized(0.25F, 0.25F).clientTrackingRange(4).updateInterval(10)
                     .build("unstable_concoction"));
-
+    public static final DeferredHolder<EntityType<?>, EntityType<Shrapnel>> SHRAPNEL = ENTITY_TYPES.register("crystal_shard",
+            ()->EntityType.Builder.<Shrapnel>of(Shrapnel::new, MobCategory.MISC)
+                    .sized(0.35F, 0.35F)
+                    .build("crystal_shard"));
 
 
 }

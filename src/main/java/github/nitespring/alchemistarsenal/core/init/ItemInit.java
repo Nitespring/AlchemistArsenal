@@ -6,6 +6,7 @@ import github.nitespring.alchemistarsenal.common.item.concoctions.*;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
+import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.ArrowItem;
@@ -40,7 +41,7 @@ public class ItemInit {
     public static final DeferredHolder<Item, ArrowItem> EXPLOSIVE_ARROW = ITEMS.register("explosive_arrow",
             ()->new ExplosiveArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, ArrowItem> AMETHYST_ARROW = ITEMS.register("amethyst_arrow",
-            ()->new ArrowItem(new Item.Properties()));
+            ()->new AmethystArrowItem(new Item.Properties()));
     public static final DeferredHolder<Item, ArrowItem> WIND_ARROW = ITEMS.register("wind_arrow",
             ()->new WindArrowItem(new Item.Properties()));
 

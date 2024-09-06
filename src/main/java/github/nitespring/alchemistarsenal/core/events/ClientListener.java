@@ -7,9 +7,8 @@ import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
-import net.minecraft.client.renderer.entity.ArrowRenderer;
+import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.entity.TippableArrowRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
@@ -21,11 +20,33 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
 @EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientListener {
 
+    public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "square_texture"), "main");
+
+
+    @SubscribeEvent
+    public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+
+        event.registerLayerDefinition(SQUARE_TEXTURE, SquareTextureEntityModel::createBodyLayer);
+
+    }
+
+    @SubscribeEvent
+    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(EntityInit.INFERNAL_ARROW.get(), InfernalArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.BOUNCY_ARROW.get(), BouncyArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.DRAGON_ARROW.get(), DragonArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.LIGHTNING_ARROW.get(), LightningArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.AMETHYST_ARROW.get(), AmethystArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.WIND_ARROW.get(), WindArrowRenderer::new);
+        event.registerEntityRenderer(EntityInit.FIRE_BOTTLE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(EntityInit.EXPLOSIVE_BOTTLE.get(), ThrownItemRenderer::new);
+        event.registerEntityRenderer(EntityInit.SHRAPNEL.get(), ShrapnelRenderer::new);
+    }
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
@@ -140,18 +161,6 @@ public class ClientListener {
         });
     }
 
-    @SubscribeEvent
-    public static void registerRenderers(final EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(EntityInit.INFERNAL_ARROW.get(), InfernalArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.BOUNCY_ARROW.get(), BouncyArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.DRAGON_ARROW.get(), DragonArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.LIGHTNING_ARROW.get(), LightningArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.EXPLOSIVE_ARROW.get(), ExplosiveArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.AMETHYST_ARROW.get(), AmethystArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.WIND_ARROW.get(), WindArrowRenderer::new);
-        event.registerEntityRenderer(EntityInit.FIRE_BOTTLE.get(), ThrownItemRenderer::new);
-        event.registerEntityRenderer(EntityInit.EXPLOSIVE_BOTTLE.get(), ThrownItemRenderer::new);
-    }
     /*@SubscribeEvent
     public static void onClientSetup(RegisterClientExtensionsEvent event) {
 
