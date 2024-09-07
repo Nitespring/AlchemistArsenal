@@ -132,7 +132,7 @@ public class Fertilizer extends Item {
             return stack;
         }
     };
-    public static DispenseItemBehavior ENCHANCED_FERTILIZER_DISPENSER_BEHAVIOUR = new OptionalDispenseItemBehavior() {
+    public static DispenseItemBehavior ENHANCED_FERTILIZER_DISPENSER_BEHAVIOUR = new OptionalDispenseItemBehavior() {
         @Override
         protected ItemStack execute(BlockSource blockSource, ItemStack stack) {
             this.setSuccess(true);

@@ -45,7 +45,7 @@ public class GameEvents {
                     DispenserBlock.registerProjectileBehavior(ItemInit.UNSTABLE_CONCOCTION.get());
                     DispenserBlock.registerProjectileBehavior(ItemInit.FLAME_IN_A_BOTTLE.get());
                     DispenserBlock.registerBehavior(ItemInit.FERTILIZER.get(), Fertilizer.FERTILIZER_DISPENSER_BEHAVIOUR);
-                    DispenserBlock.registerBehavior(ItemInit.ENHANCED_FERTILIZER.get(), Fertilizer.ENCHANCED_FERTILIZER_DISPENSER_BEHAVIOUR);
+                    DispenserBlock.registerBehavior(ItemInit.ENHANCED_FERTILIZER.get(), Fertilizer.ENHANCED_FERTILIZER_DISPENSER_BEHAVIOUR);
 
                 }
         );
