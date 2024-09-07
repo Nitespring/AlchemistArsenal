@@ -1,16 +1,24 @@
 package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
+import github.nitespring.alchemistarsenal.common.item.concoctions.Fertilizer;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import github.nitespring.alchemistarsenal.core.init.MobEffectInit;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DispenseItemBehavior;
+import net.minecraft.core.dispenser.OptionalDispenseItemBehavior;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.BoneMealItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionBrewing;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -36,7 +44,8 @@ public class GameEvents {
                     DispenserBlock.registerProjectileBehavior(ItemInit.INFERNAL_ARROW.get());
                     DispenserBlock.registerProjectileBehavior(ItemInit.UNSTABLE_CONCOCTION.get());
                     DispenserBlock.registerProjectileBehavior(ItemInit.FLAME_IN_A_BOTTLE.get());
-
+                    DispenserBlock.registerBehavior(ItemInit.FERTILIZER.get(), Fertilizer.FERTILIZER_DISPENSER_BEHAVIOUR);
+                    DispenserBlock.registerBehavior(ItemInit.ENHANCED_FERTILIZER.get(), Fertilizer.ENCHANCED_FERTILIZER_DISPENSER_BEHAVIOUR);
 
                 }
         );

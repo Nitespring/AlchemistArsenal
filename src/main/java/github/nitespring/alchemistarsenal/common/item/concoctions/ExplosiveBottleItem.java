@@ -3,8 +3,10 @@ package github.nitespring.alchemistarsenal.common.item.concoctions;
 import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.ExplosiveBottle;
 import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.FireBottle;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
@@ -14,8 +16,11 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ProjectileItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 public class ExplosiveBottleItem extends Item implements ProjectileItem {
     public ExplosiveBottleItem(Properties pProperties) {
@@ -47,5 +52,11 @@ public class ExplosiveBottleItem extends Item implements ProjectileItem {
         itemstack.consume(1, player);
         player.getCooldowns().addCooldown(this,2);
         return InteractionResultHolder.consume(itemstack);
+    }
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(Component.translatable("comment.alkhars.unstable_concoction").withStyle(ChatFormatting.DARK_PURPLE));
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+
     }
 }
