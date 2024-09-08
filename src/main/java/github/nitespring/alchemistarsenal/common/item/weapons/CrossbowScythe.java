@@ -16,7 +16,8 @@ import net.minecraft.world.item.component.Tool;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.ItemAbilities;
+import net.minecraftforge.common.ToolAction;
+import net.minecraftforge.common.ToolActions;
 
 import java.util.List;
 import java.util.Properties;
@@ -78,8 +79,8 @@ public class CrossbowScythe extends CrossbowItem {
         return !pPlayer.isCreative();
     }
     @Override
-    public boolean canPerformAction(ItemStack stack, net.neoforged.neoforge.common.ItemAbility itemAbility) {
-        return itemAbility==ItemAbilities.SWORD_DIG;
+    public boolean canPerformAction(ItemStack stack, ToolAction toolAction) {
+        return toolAction== ToolActions.SWORD_DIG;
     }
 }
 

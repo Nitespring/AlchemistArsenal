@@ -31,7 +31,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import net.minecraftforge.event.ForgeEventFactory;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
@@ -46,7 +47,7 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
 
 
     public AutomaticCrossbow(Properties pProperties) {
-        super(pProperties.component(DataComponentInit.CHARGE,0));
+        super(pProperties.component(DataComponentInit.CHARGE.get(),0));
     }
 
     @Override
@@ -98,7 +99,7 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
     }
     public void performShooting(Level pLevel, LivingEntity shooter, InteractionHand pHand, ItemStack weapon, float pVelocity, float pInaccuracy, @Nullable LivingEntity pTarget) {
         if (pLevel instanceof ServerLevel serverlevel) {
-            if (shooter instanceof Player player && net.neoforged.neoforge.event.EventHooks.onArrowLoose(weapon, shooter.level(), player, 1, true) < 0) return;
+            if (shooter instanceof Player player && ForgeEventFactory.onArrowLoose(weapon, shooter.level(), player, 1, true) < 0) return;
             ArrayList<ItemStack> projectiles = new ArrayList<ItemStack>();
             projectiles.add(shooter.getProjectile(weapon));
                 this.shoot(serverlevel, shooter, pHand, weapon, projectiles, pVelocity, pInaccuracy, shooter instanceof Player, pTarget);
@@ -108,6 +109,9 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
                 }
 
         }
+    }
+    public ItemStack getDefaultCreativeAmmo(Player player, ItemStack stack){
+        return Items.ARROW.getDefaultInstance();
     }
     private static float getShootingPower(ItemStack pProjectile) {
         return pProjectile.is(Items.FIREWORK_ROCKET) ? 1.6F : 3.15F;
@@ -148,7 +152,7 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
     @Override
     protected void shoot(ServerLevel pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pWeapon, List<ItemStack> pProjectileItems, float pVelocity, float pInaccuracy, boolean pIsCrit, @org.jetbrains.annotations.Nullable LivingEntity pTarget) {
         float f = EnchantmentHelper.processProjectileSpread(pLevel, pWeapon, pShooter, 0.0F);
-        int multiShot = pWeapon.getEnchantmentLevel(pShooter.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(Enchantments.MULTISHOT).get());
+        int multiShot = EnchantmentHelper.getItemEnchantmentLevel(pShooter.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(Enchantments.MULTISHOT).get(),pWeapon);
         int amount = 1 + 2*multiShot;
         if(multiShot>=1) {
             for (int i = -multiShot; i <= multiShot; i++) {
@@ -198,11 +202,11 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
 
     public void decreaseCharge(ItemStack stack){setCharge(stack, Math.max(0,getCharge(stack)-1));}
     public void setCharge(ItemStack stack,int i){
-        stack.set(DataComponentInit.CHARGE, i);
+        stack.set(DataComponentInit.CHARGE.get(), i);
     }
     public void setFullCharge(ItemStack stack){setCharge(stack,24);}
     public static int getCharge(ItemStack stack){
-        return stack.get(DataComponentInit.CHARGE)!=null ? stack.getOrDefault(DataComponentInit.CHARGE,0) : 0;
+        return stack.get(DataComponentInit.CHARGE.get())!=null ? stack.getOrDefault(DataComponentInit.CHARGE.get(),0) : 0;
 
     }
     public static boolean isCharged(ItemStack stack) {

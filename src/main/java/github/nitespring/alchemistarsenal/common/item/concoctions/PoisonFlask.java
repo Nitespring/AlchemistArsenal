@@ -39,7 +39,7 @@ public class PoisonFlask extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffectInit.POISONOUS_CLAW,22000));
+        entity.addEffect(new MobEffectInstance(MobEffectInit.POISONOUS_CLAW.getHolder().get(),22000));
         itemStack.consume(1,entity);
         return itemStack;
     }

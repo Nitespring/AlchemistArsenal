@@ -15,13 +15,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.api.distmarker.Dist;
 
-@EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+
+@Mod.EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientListener {
 
     public static final ModelLayerLocation SQUARE_TEXTURE = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "square_texture"), "main");
@@ -149,8 +151,8 @@ public class ClientListener {
                     (stack, level, player, seed) ->
                     {
                         ChargedProjectiles chargedprojectiles1 = stack.get(DataComponents.CHARGED_PROJECTILES);
-                        ChargedProjectiles chargedprojectiles2 = stack.get(DataComponentInit.CHARGED_PROJECTILES2);
-                        ChargedProjectiles chargedprojectiles3 = stack.get(DataComponentInit.CHARGED_PROJECTILES3);
+                        ChargedProjectiles chargedprojectiles2 = stack.get(DataComponentInit.CHARGED_PROJECTILES2.get());
+                        ChargedProjectiles chargedprojectiles3 = stack.get(DataComponentInit.CHARGED_PROJECTILES3.get());
 
                         return (chargedprojectiles3!=null && !chargedprojectiles3.isEmpty()) ? 3 :
                                 (chargedprojectiles2!=null &&!chargedprojectiles2.isEmpty()) ? 2 :

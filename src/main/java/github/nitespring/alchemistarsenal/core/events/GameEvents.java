@@ -20,14 +20,15 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.DispenserBlock;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.common.brewing.BrewingRecipe;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 
-@EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.GAME)
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.common.brewing.BrewingRecipe;
+import net.minecraftforge.event.brewing.BrewingRecipeRegisterEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
+
+@Mod.EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GameEvents {
 
 
@@ -53,8 +54,8 @@ public class GameEvents {
 
 
     @SubscribeEvent
-    public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {
-        DispenserBlock.registerProjectileBehavior(ItemInit.AMETHYST_ARROW.get().asItem());
+    public static void registerBrewingRecipes(BrewingRecipeRegisterEvent event) {
+
         // Gets the builder to add recipes to
         PotionBrewing.Builder builder = event.getBuilder();
 
@@ -62,47 +63,47 @@ public class GameEvents {
         builder.addMix(
                 Potions.AWKWARD,
                 ItemInit.ENHANCED_FERTILIZER.get(),
-                MobEffectInit.TASTY_POTION
+                MobEffectInit.TASTY_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.TASTY_POTION,
+                MobEffectInit.TASTY_POTION.getHolder().get(),
                 Items.COCOA_BEANS,
-                MobEffectInit.LONG_ARMS_POTION
+                MobEffectInit.LONG_ARMS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONG_ARMS_POTION,
+                MobEffectInit.LONG_ARMS_POTION.getHolder().get(),
                 Items.REDSTONE,
-                MobEffectInit.LONGER_LONG_ARMS_POTION
+                MobEffectInit.LONGER_LONG_ARMS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONG_ARMS_POTION,
+                MobEffectInit.LONG_ARMS_POTION.getHolder().get(),
                 Items.GLOWSTONE_DUST,
-                MobEffectInit.LONGER_ARMS_POTION
+                MobEffectInit.LONGER_ARMS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONGER_ARMS_POTION,
+                MobEffectInit.LONGER_ARMS_POTION.getHolder().get(),
                 Items.GLOWSTONE,
-                MobEffectInit.LONGEST_ARMS_POTION
+                MobEffectInit.LONGEST_ARMS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.TASTY_POTION,
+                MobEffectInit.TASTY_POTION.getHolder().get(),
                 Items.SUGAR,
-                MobEffectInit.LONG_LEGS_POTION
+                MobEffectInit.LONG_LEGS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONG_LEGS_POTION,
+                MobEffectInit.LONG_LEGS_POTION.getHolder().get(),
                 Items.REDSTONE,
-                MobEffectInit.LONGER_LONG_LEGS_POTION
+                MobEffectInit.LONGER_LONG_LEGS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONG_LEGS_POTION,
+                MobEffectInit.LONG_LEGS_POTION.getHolder().get(),
                 Items.GLOWSTONE_DUST,
-                MobEffectInit.LONGER_LEGS_POTION
+                MobEffectInit.LONGER_LEGS_POTION.getHolder().get()
         );
         builder.addMix(
-                MobEffectInit.LONGER_LEGS_POTION,
+                MobEffectInit.LONGER_LEGS_POTION.getHolder().get(),
                 Items.GLOWSTONE,
-                MobEffectInit.LONGEST_LEGS_POTION
+                MobEffectInit.LONGEST_LEGS_POTION.getHolder().get()
         );
     }
 

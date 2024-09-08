@@ -24,6 +24,7 @@ import net.minecraft.world.item.component.ChargedProjectiles;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class RepeatingCrossbow extends CrossbowItem {
     public static final Predicate<ItemStack> FIREWORK_ONLY = p_43017_ -> p_43017_.is(Items.FIREWORK_ROCKET);
     public RepeatingCrossbow(Properties pProperties) {
         super(pProperties.component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)
-                .component(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.EMPTY)
-                .component(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.EMPTY));
+                .component(DataComponentInit.CHARGED_PROJECTILES2.get(), ChargedProjectiles.EMPTY)
+                .component(DataComponentInit.CHARGED_PROJECTILES3.get(), ChargedProjectiles.EMPTY));
     }
 
     @Override
@@ -76,8 +77,8 @@ public class RepeatingCrossbow extends CrossbowItem {
             if(livingEntity instanceof Player player) {
                 ItemStack ammo1 = player.getProjectile(stack);
                 if(player.isCreative()){
-                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo1));
-                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo1));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES2.get(), ChargedProjectiles.of(ammo1));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES3.get(), ChargedProjectiles.of(ammo1));
                 }
                 if(ammo1!=ItemStack.EMPTY){
                     stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(ammo1));
@@ -86,7 +87,7 @@ public class RepeatingCrossbow extends CrossbowItem {
                         ItemStack ammo2 = player.getItemBySlot(EquipmentSlot.OFFHAND);
                         if(ammo2!=ItemStack.EMPTY) {
                             if (ammo2.is(Items.FIREWORK_ROCKET)) {
-                                stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo2));
+                                stack.set(DataComponentInit.CHARGED_PROJECTILES2.get(), ChargedProjectiles.of(ammo2));
                                 if (!player.isCreative()) {
                                     useAmmo(stack, ammo2, livingEntity, false);
                                 }
@@ -94,7 +95,7 @@ public class RepeatingCrossbow extends CrossbowItem {
                             ItemStack ammo3 = player.getItemBySlot(EquipmentSlot.OFFHAND);
                             if(ammo3!=ItemStack.EMPTY) {
                                 if (ammo3.is(Items.FIREWORK_ROCKET)) {
-                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo3));
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3.get(), ChargedProjectiles.of(ammo3));
                                     if (!player.isCreative()) {
                                         useAmmo(stack, ammo3, livingEntity, false);
                                     }
@@ -110,7 +111,7 @@ public class RepeatingCrossbow extends CrossbowItem {
                                 ItemStack itemstack1 = player.getInventory().getItem(j);
                                 if (itemstack1.is(ItemTags.ARROWS)) {
                                     ammo2=itemstack1;
-                                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(ammo2));
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES2.get(), ChargedProjectiles.of(ammo2));
                                     if(!player.isCreative()){useAmmo(stack,itemstack1,livingEntity,false);}
                                 }
                                 j++;
@@ -122,7 +123,7 @@ public class RepeatingCrossbow extends CrossbowItem {
                                 ItemStack itemstack1 = player.getInventory().getItem(k);
                                 if (itemstack1.is(ItemTags.ARROWS)) {
                                     ammo3=itemstack1;
-                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(ammo3));
+                                    stack.set(DataComponentInit.CHARGED_PROJECTILES3.get(), ChargedProjectiles.of(ammo3));
                                     if(!player.isCreative()){useAmmo(stack,itemstack1,livingEntity,false);}
                                 }
                                 k++;
@@ -131,18 +132,22 @@ public class RepeatingCrossbow extends CrossbowItem {
                     }
                 }else if(player.getAbilities().instabuild){
                     stack.set(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
-                    stack.set(DataComponentInit.CHARGED_PROJECTILES2, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
-                    stack.set(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES2.get(), ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
+                    stack.set(DataComponentInit.CHARGED_PROJECTILES3.get(), ChargedProjectiles.of(getDefaultCreativeAmmo(player, stack)));
                 }
 
             }
         }
     }
 
+    public ItemStack getDefaultCreativeAmmo(Player player, ItemStack stack){
+        return Items.ARROW.getDefaultInstance();
+    }
+
     public static boolean isCharged(ItemStack pCrossbowStack) {
         ChargedProjectiles chargedprojectiles1 = pCrossbowStack.get(DataComponents.CHARGED_PROJECTILES);
-        ChargedProjectiles chargedprojectiles2 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES2);
-        ChargedProjectiles chargedprojectiles3 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES3);
+        ChargedProjectiles chargedprojectiles2 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES2.get());
+        ChargedProjectiles chargedprojectiles3 = pCrossbowStack.get(DataComponentInit.CHARGED_PROJECTILES3.get());
         return !chargedprojectiles1.isEmpty();
     }
 
@@ -157,13 +162,13 @@ public class RepeatingCrossbow extends CrossbowItem {
 
     public void performShooting(Level pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pWeapon, float pVelocity, float pInaccuracy, @Nullable LivingEntity pTarget) {
         if (pLevel instanceof ServerLevel serverlevel) {
-            if (pShooter instanceof Player player && net.neoforged.neoforge.event.EventHooks.onArrowLoose(pWeapon, pShooter.level(), player, 1, true) < 0) return;
+            if (pShooter instanceof Player player && ForgeEventFactory.onArrowLoose(pWeapon, pShooter.level(), player, 1, true) < 0) return;
             ChargedProjectiles chargedprojectiles1 = pWeapon.get(DataComponents.CHARGED_PROJECTILES);
-            ChargedProjectiles chargedprojectiles2 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES2);
-            ChargedProjectiles chargedprojectiles3 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES3);
+            ChargedProjectiles chargedprojectiles2 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES2.get());
+            ChargedProjectiles chargedprojectiles3 = pWeapon.get(DataComponentInit.CHARGED_PROJECTILES3.get());
             if (chargedprojectiles3 != null && !chargedprojectiles3.isEmpty()) {
                 this.shoot(serverlevel, pShooter, pHand, pWeapon, chargedprojectiles3.getItems(), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
-                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES3,ChargedProjectiles.EMPTY);
+                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES3.get(),ChargedProjectiles.EMPTY);
 
                 if (pShooter instanceof ServerPlayer serverplayer) {
                     CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
@@ -171,7 +176,7 @@ public class RepeatingCrossbow extends CrossbowItem {
                 }
             }else if (chargedprojectiles2 != null && !chargedprojectiles2.isEmpty()) {
                 this.shoot(serverlevel, pShooter, pHand, pWeapon, chargedprojectiles2.getItems(), pVelocity, pInaccuracy, pShooter instanceof Player, pTarget);
-                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES2,ChargedProjectiles.EMPTY);
+                pWeapon.set(DataComponentInit.CHARGED_PROJECTILES2.get(),ChargedProjectiles.EMPTY);
 
                 if (pShooter instanceof ServerPlayer serverplayer) {
                     CriteriaTriggers.SHOT_CROSSBOW.trigger(serverplayer, pWeapon);
@@ -191,7 +196,7 @@ public class RepeatingCrossbow extends CrossbowItem {
     @Override
     protected void shoot(ServerLevel pLevel, LivingEntity pShooter, InteractionHand pHand, ItemStack pWeapon, List<ItemStack> pProjectileItems, float pVelocity, float pInaccuracy, boolean pIsCrit, @org.jetbrains.annotations.Nullable LivingEntity pTarget) {
         float f = EnchantmentHelper.processProjectileSpread(pLevel, pWeapon, pShooter, 0.0F);
-        int multiShot = pWeapon.getEnchantmentLevel(pShooter.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(Enchantments.MULTISHOT).get());
+        int multiShot = EnchantmentHelper.getItemEnchantmentLevel(pShooter.level().registryAccess().registry(Registries.ENCHANTMENT).get().getHolder(Enchantments.MULTISHOT).get(),pWeapon);
         int amount = 1 + 2*multiShot;
         if(multiShot>=1) {
             for (int i = -multiShot; i <= multiShot; i++) {
@@ -238,8 +243,8 @@ public class RepeatingCrossbow extends CrossbowItem {
     @Override
     public void appendHoverText(ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
         ChargedProjectiles chargedprojectiles1 = pStack.get(DataComponents.CHARGED_PROJECTILES);
-        ChargedProjectiles chargedprojectiles2 = pStack.get(DataComponentInit.CHARGED_PROJECTILES2);
-        ChargedProjectiles chargedprojectiles3 = pStack.get(DataComponentInit.CHARGED_PROJECTILES3);
+        ChargedProjectiles chargedprojectiles2 = pStack.get(DataComponentInit.CHARGED_PROJECTILES2.get());
+        ChargedProjectiles chargedprojectiles3 = pStack.get(DataComponentInit.CHARGED_PROJECTILES3.get());
 
         if (chargedprojectiles1 != null && !chargedprojectiles1.isEmpty()) {
                 ItemStack itemstack = chargedprojectiles1.getItems().get(0);

@@ -36,7 +36,7 @@ public class FlamingFlask extends Item {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity entity) {
-        entity.addEffect(new MobEffectInstance(MobEffectInit.FLAMING_FIST,22000));
+        entity.addEffect(new MobEffectInstance(MobEffectInit.FLAMING_FIST.getHolder().get(),22000));
         itemStack.consume(1,entity);
         return itemStack;
     }

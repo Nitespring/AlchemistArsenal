@@ -91,9 +91,9 @@ public class FragmentingArrow extends AbstractArrow {
         float movementSpeed = (float)this.getDeltaMovement().length();
         double baseArrowDamage = this.getBaseDamage();
         if (this.getWeaponItem() != null ) {
-            baseArrowDamage = baseArrowDamage + this.getWeaponItem().getEnchantmentLevel(
+            baseArrowDamage = baseArrowDamage + EnchantmentHelper.getItemEnchantmentLevel(
                     this.level().registryAccess().registry(Registries.ENCHANTMENT).get()
-                            .getHolder(Enchantments.POWER).get());
+                            .getHolder(Enchantments.POWER).get(),this.getWeaponItem());
         }
         int approximateArrowDamage = Mth.ceil(Mth.clamp((double)movementSpeed * baseArrowDamage, 0.0, 2.147483647E9));
         if (this.isCritArrow()) {
