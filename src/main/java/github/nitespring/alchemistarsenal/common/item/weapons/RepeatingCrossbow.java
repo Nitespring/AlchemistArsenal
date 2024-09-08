@@ -39,7 +39,14 @@ public class RepeatingCrossbow extends CrossbowItem {
                 .component(DataComponentInit.CHARGED_PROJECTILES3, ChargedProjectiles.EMPTY));
     }
 
-
+    @Override
+    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+        return Tiers.DIAMOND.getRepairIngredient().test(pRepair);
+    }
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return Tiers.DIAMOND.getEnchantmentValue();
+    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {

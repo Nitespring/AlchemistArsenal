@@ -88,6 +88,14 @@ public class AutomaticCrossbow extends ProjectileWeaponItem {
             return InteractionResultHolder.pass(stack);
         }
     }
+    @Override
+    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
+        return Tiers.NETHERITE.getRepairIngredient().test(pRepair);
+    }
+    @Override
+    public int getEnchantmentValue(ItemStack stack) {
+        return 12;
+    }
     public void performShooting(Level pLevel, LivingEntity shooter, InteractionHand pHand, ItemStack weapon, float pVelocity, float pInaccuracy, @Nullable LivingEntity pTarget) {
         if (pLevel instanceof ServerLevel serverlevel) {
             if (shooter instanceof Player player && net.neoforged.neoforge.event.EventHooks.onArrowLoose(weapon, shooter.level(), player, 1, true) < 0) return;

@@ -49,7 +49,7 @@ public class Fertilizer extends Item {
         BlockPos pos = context.getClickedPos();
         BlockState block = context.getLevel().getBlockState(pos);
         if(block.getBlock() instanceof BonemealableBlock bonemealableblock
-                && bonemealableblock.isValidBonemealTarget(context.getLevel(),pos,block)) {
+                /*&& bonemealableblock.isValidBonemealTarget(context.getLevel(),pos,block)*/) {
             for (int i = -range; i <= range; i++) {
                 for (int k = -range; k <= range; k++) {
                         for (int j = -range; j <= range; j++) {
@@ -104,7 +104,7 @@ public class Fertilizer extends Item {
                 BlockPos pos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
                 BlockState block = level.getBlockState(pos);
                 if (block.getBlock() instanceof BonemealableBlock bonemealableblock
-                        && bonemealableblock.isValidBonemealTarget(level, pos, block)) {
+                        /*&& bonemealableblock.isValidBonemealTarget(level, pos, block)*/) {
                     if(blockSource.state().getValue(DispenserBlock.FACING)!=Direction.DOWN&&blockSource.state().getValue(DispenserBlock.FACING)!=Direction.UP) {
                         pos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING), 2);
                     }
@@ -143,7 +143,7 @@ public class Fertilizer extends Item {
                 BlockPos pos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING));
                 BlockState block = level.getBlockState(pos);
                 if (block.getBlock() instanceof BonemealableBlock bonemealableblock
-                        && bonemealableblock.isValidBonemealTarget(level, pos, block)) {
+                        /*&& bonemealableblock.isValidBonemealTarget(level, pos, block)*/) {
                     if(blockSource.state().getValue(DispenserBlock.FACING)!=Direction.DOWN&&blockSource.state().getValue(DispenserBlock.FACING)!=Direction.UP) {
                         pos = blockSource.pos().relative(blockSource.state().getValue(DispenserBlock.FACING), 3);
                     }
