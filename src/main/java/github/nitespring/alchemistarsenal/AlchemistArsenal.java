@@ -2,6 +2,7 @@ package github.nitespring.alchemistarsenal;
 
 import github.nitespring.alchemistarsenal.core.events.GameEvents;
 import github.nitespring.alchemistarsenal.core.init.*;
+import github.nitespring.alchemistarsenal.networking.AlkharsPacketHandler;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.slf4j.Logger;
@@ -25,6 +26,8 @@ public class AlchemistArsenal
     {
         //NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(GameEvents::commonSetup);
+
+        modEventBus.addListener(AlkharsPacketHandler::onRegisterPayloadHandler);
 
         DataComponentInit.DATA_COMPONENTS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
