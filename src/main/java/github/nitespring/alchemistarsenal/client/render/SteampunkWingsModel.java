@@ -33,17 +33,17 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
         PartDefinition left_wing = partdefinition.addOrReplaceChild("left_wing", CubeListBuilder.create()
                 .texOffs(22, 0)
                         .addBox(-4.5F, 0.0F, -1.0F,
-                                10.0F, 28.0F, 2.0F,
+                                10.0F, 24.0F, 2.0F,
                                 new CubeDeformation(0.0F))
                 .texOffs(48, 42)
                         .addBox(3.5F, 0.0F, -0.5F,
-                        2.0F, 20.0F, 2.0F,
+                        2.0F, 16.0F, 2.0F,
                         new CubeDeformation(0.15F)),
                 PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, -3.1416F, 0.0F, 3.1416F));
 
         PartDefinition left_wing_r1 = left_wing.addOrReplaceChild("left_wing_r1", CubeListBuilder.create()
                 .texOffs(56, 42)
-                .addBox(4.25F, 19.25F, -0.5F,
+                .addBox(2.5F, 15.5F, -0.5F,
                         2.0F, 8.0F, 2.0F,
                         new CubeDeformation(0.1F)),
                 PartPose.offsetAndRotation(8.65F, 0.25F, 0.0F, 0.0F, 0.0F, 0.48F));
@@ -51,18 +51,18 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
         PartDefinition right_wing = partdefinition.addOrReplaceChild("right_wing", CubeListBuilder.create()
                 .texOffs(22, 0).mirror()
                         .addBox(-5.5F, 0.0F, -1.0F,
-                        10.0F, 28.0F, 2.0F,
+                        10.0F, 24.0F, 2.0F,
                         new CubeDeformation(0.0F)).mirror(false)
                 .texOffs(48, 42).mirror()
                         .addBox(-5.5F, 0.0F, -0.5F,
-                        2.0F, 20.0F, 2.0F,
+                        2.0F, 16.0F, 2.0F,
                         new CubeDeformation(0.15F)).mirror(false),
                 PartPose.offsetAndRotation(0.0F, 24.0F, 0.0F, -3.1416F, 0.0F, -3.1416F));
 
         PartDefinition right_wing_r1 = right_wing.addOrReplaceChild("right_wing_r1",
                 CubeListBuilder.create()
                         .texOffs(56, 42).mirror()
-                        .addBox(-6.25F, 19.25F, -0.5F,
+                        .addBox(-4.5F, 15.5F, -0.5F,
                                 2.0F, 8.0F, 2.0F,
                                 new CubeDeformation(0.1F)).mirror(false),
                 PartPose.offsetAndRotation(-8.65F, 0.25F, 0.0F, 0.0F, 0.0F, -0.48F));
@@ -95,6 +95,7 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
 
             f = f4 * (float) (Math.PI / 9) + (1.0F - f4) * f;
             f1 = f4 * (float) (-Math.PI / 2) + (1.0F - f4) * f1;
+            f2=5;
         } else if (pEntity.isCrouching()) {
             f = (float) (Math.PI * 2.0 / 9.0);
             f1 = (float) (-Math.PI / 4);
