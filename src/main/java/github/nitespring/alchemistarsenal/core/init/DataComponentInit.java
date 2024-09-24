@@ -2,10 +2,9 @@ package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import net.minecraft.core.component.DataComponentType;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ExtraCodecs;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.ChargedProjectiles;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -24,5 +23,11 @@ public class DataComponentInit {
             "charged_projectiles3",
             builder -> builder.persistent(ChargedProjectiles.CODEC).networkSynchronized(ChargedProjectiles.STREAM_CODEC).cacheEncoding()
     );
+
+    public static final DeferredHolder<DataComponentType<?>, DataComponentType<ResourceLocation>> CUSTOM_WINGS_TEXTURE = DATA_COMPONENTS.registerComponentType(
+            "custom_wings_texture",
+            builder -> builder.persistent(ResourceLocation.CODEC).networkSynchronized(ResourceLocation.STREAM_CODEC)
+    );
+
 
 }

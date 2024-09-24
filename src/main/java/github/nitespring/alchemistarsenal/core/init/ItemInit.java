@@ -3,6 +3,7 @@ package github.nitespring.alchemistarsenal.core.init;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.item.arrows.*;
 import github.nitespring.alchemistarsenal.common.item.concoctions.*;
+import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkWingsItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
@@ -22,6 +23,9 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(BuiltInRegistries.ITEM,
             AlchemistArsenal.MODID);
 
+
+    public static final DeferredHolder<Item, SteampunkWingsItem> STEAMPUNK_WINGS = ITEMS.register("steampunk_wings",
+            ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(1080)));
 
     public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
             ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512)));

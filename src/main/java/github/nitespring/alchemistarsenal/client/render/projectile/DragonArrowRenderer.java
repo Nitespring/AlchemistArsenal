@@ -1,21 +1,20 @@
-package github.nitespring.alchemistarsenal.client.render;
+package github.nitespring.alchemistarsenal.client.render.projectile;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import net.minecraft.client.renderer.entity.ArrowRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.SpectralArrowRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
-public class InfernalArrowRenderer extends ArrowRenderer {
-    public InfernalArrowRenderer(EntityRendererProvider.Context pContext) {
+public class DragonArrowRenderer extends ArrowRenderer {
+    public DragonArrowRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);
     }
 
     @Override
     public ResourceLocation getTextureLocation(Entity pEntity) {
-        return ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"textures/entity/projectiles/flaming_arrow.png");
+        return ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"textures/entity/projectiles/dragon_arrow.png");
     }
 
     @Override
@@ -27,4 +26,5 @@ public class InfernalArrowRenderer extends ArrowRenderer {
     protected int getSkyLightLevel(Entity pEntity, BlockPos pPos) {
         return 15;
     }
+
 }

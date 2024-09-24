@@ -35,6 +35,7 @@ public class CreativeTabInit {
                         output.accept(ItemInit.CROSSBOW_SCYTHE.get());
                         output.accept(ItemInit.REPEATING_CROSSBOW.get());
                         output.accept(ItemInit.AUTOMATIC_CROSSBOW.get());
+                        output.accept(ItemInit.STEAMPUNK_WINGS.get());
                     })
                     .build());
 

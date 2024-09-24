@@ -1,21 +1,17 @@
-package github.nitespring.alchemistarsenal.client.render;
+package github.nitespring.alchemistarsenal.client.render.projectile;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.core.events.ClientListener;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.block.Blocks;
 
 public class ShrapnelRenderer<T extends Entity, M extends SquareTextureEntityModel<T>> extends EntityRenderer<T> {
 
