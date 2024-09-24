@@ -17,6 +17,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ItemAbility;
 
+import java.util.Random;
+
 public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
     public SteampunkWingsItem(Properties properties) {
         super(properties);
@@ -52,6 +54,14 @@ public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
                     stack.hurtAndBreak(1, entity, net.minecraft.world.entity.EquipmentSlot.CHEST);
                 }
                 entity.gameEvent(net.minecraft.world.level.gameevent.GameEvent.ELYTRA_GLIDE);
+
+            }
+        }
+        if(entity.getDeltaMovement().length()>=0.1) {
+            int nextFlightTick = flightTicks + 1;
+            if (nextFlightTick % 16 == 0) {
+                Random rand = new Random();
+                entity.playSound(SoundEvents.PHANTOM_FLAP, 0.6f + 0.1f * rand.nextFloat(), 1.5f + 0.75f * rand.nextFloat());
             }
         }
         return true;

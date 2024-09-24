@@ -45,13 +45,9 @@ public class SteampunkWingsLayer<T extends LivingEntity, M extends EntityModel<T
             ResourceLocation resourcelocation;
             if (pLivingEntity instanceof AbstractClientPlayer abstractclientplayer) {
                 PlayerSkin playerskin = abstractclientplayer.getSkin();
-                if (playerskin.elytraTexture() != null) {
-                    resourcelocation = playerskin.elytraTexture();
-                } else if (playerskin.capeTexture() != null && abstractclientplayer.isModelPartShown(PlayerModelPart.CAPE)) {
-                    resourcelocation = playerskin.capeTexture();
-                } else {
-                    resourcelocation = getElytraTexture(itemstack, pLivingEntity);
-                }
+
+                resourcelocation = getElytraTexture(itemstack, pLivingEntity);
+
             } else {
                 resourcelocation = getElytraTexture(itemstack, pLivingEntity);
             }
