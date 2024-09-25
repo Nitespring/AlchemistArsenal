@@ -30,6 +30,7 @@ public class AlchemistArsenal
         modEventBus.addListener(AlkharsPacketHandler::onRegisterPayloadHandler);
 
         DataComponentInit.DATA_COMPONENTS.register(modEventBus);
+        ArmorMaterialInit.MATERIALS.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
         EntityInit.ENTITY_TYPES.register(modEventBus);
         MobEffectInit.MOB_EFFECTS.register(modEventBus);

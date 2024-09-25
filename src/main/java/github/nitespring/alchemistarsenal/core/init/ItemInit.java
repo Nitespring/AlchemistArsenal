@@ -26,16 +26,16 @@ public class ItemInit {
     public static final DeferredHolder<Item, SteampunkWingsItem> STEAMPUNK_WINGS = ITEMS.register("steampunk_wings",
             ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(1080)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_HELMET = ITEMS.register("steampunk_helmet",
-            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.HELMET,
+            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.HELMET,
                     new Item.Properties().stacksTo(1).durability(1080)));
     public static final DeferredHolder<Item, SteampunkChestplateItem> STEAMPUNK_CHESTPLATE = ITEMS.register("steampunk_chestplate",
-            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.CHESTPLATE,
+            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties().stacksTo(1).durability(1080)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
-            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.LEGGINGS,
+            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
                     new Item.Properties().stacksTo(1).durability(1080)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_BOOTS = ITEMS.register("steampunk_boots",
-            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.BOOTS,
+            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.BOOTS,
                     new Item.Properties().stacksTo(1).durability(1080)));
 
     public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",

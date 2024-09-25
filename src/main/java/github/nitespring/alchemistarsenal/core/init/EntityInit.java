@@ -1,6 +1,7 @@
 package github.nitespring.alchemistarsenal.core.init;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
+import github.nitespring.alchemistarsenal.common.entity.projectile.ElytraBooster;
 import github.nitespring.alchemistarsenal.common.entity.projectile.Shrapnel;
 import github.nitespring.alchemistarsenal.common.entity.projectile.arrow.*;
 import github.nitespring.alchemistarsenal.common.entity.projectile.throwable.ExplosiveBottle;
@@ -56,6 +57,10 @@ public class EntityInit {
             ()->EntityType.Builder.<Shrapnel>of(Shrapnel::new, MobCategory.MISC)
                     .sized(0.35F, 0.35F)
                     .build("crystal_shard"));
+    public static final DeferredHolder<EntityType<?>, EntityType<ElytraBooster>> ELYTRA_BOOSTER = ENTITY_TYPES.register("elytra_booster",
+            ()->EntityType.Builder.<ElytraBooster>of(ElytraBooster::new, MobCategory.MISC)
+                    .sized(0.35F, 0.35F)
+                    .build("elytra_booster"));
 
 
 }

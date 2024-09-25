@@ -108,8 +108,13 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
             f2=5;
             //f5 = (float) (Math.min(1.2*Math.abs(vec3.length()),0.5f)*Math.cos(0.4*pAgeInTicks*Math.min(Math.abs(vec3.length()),1.5f)));
             //f5 = (float) (Math.min(1.2*Math.abs(vec3.length()),0.5f)*Math.cos(0.4*pAgeInTicks));
-            if(f4>0) {
-                f5 = (float) (0.5f * Math.cos(0.35 * pAgeInTicks));
+            if(f4>0&&f1<=-0.75f) {
+                /*if(pEntity.getLookAngle().y>=-0.25) {
+                    f5 = (float) (0.25f * Math.cos(0.15 * pAgeInTicks));
+                    if (pEntity.getLookAngle().y >= -0.1) {*/
+                        f5 = (float) (0.5f * Math.cos(0.35 * pAgeInTicks));
+               /*     }
+                }*/
             }
             f6=1.0f;
             f7=0.5f;

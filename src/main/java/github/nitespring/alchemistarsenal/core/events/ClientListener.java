@@ -13,6 +13,7 @@ import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.FireworkEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
@@ -86,6 +87,7 @@ public class ClientListener {
         event.registerEntityRenderer(EntityInit.FIRE_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(EntityInit.EXPLOSIVE_BOTTLE.get(), ThrownItemRenderer::new);
         event.registerEntityRenderer(EntityInit.SHRAPNEL.get(), ShrapnelRenderer::new);
+        event.registerEntityRenderer(EntityInit.ELYTRA_BOOSTER.get(), FireworkEntityRenderer::new);
     }
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
