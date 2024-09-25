@@ -1,27 +1,24 @@
 package github.nitespring.alchemistarsenal.core.events;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
-import github.nitespring.alchemistarsenal.client.render.*;
+import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkSuitModel;
+import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkWingsLayer;
+import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkWingsModel;
 import github.nitespring.alchemistarsenal.client.render.projectile.*;
+import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkChestplateItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
-import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
-import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -30,8 +27,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
-import javax.management.StandardEmitterMBean;
 import java.util.HashMap;
 
 @EventBusSubscriber(modid = AlchemistArsenal.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -73,6 +70,7 @@ public class ClientListener {
 
         event.registerLayerDefinition(SQUARE_TEXTURE, SquareTextureEntityModel::createBodyLayer);
         event.registerLayerDefinition(SteampunkWingsModel.LAYER_LOCATION,SteampunkWingsModel::createBodyLayer);
+        event.registerLayerDefinition(SteampunkSuitModel.LAYER_LOCATION,SteampunkSuitModel::createBodyLayer);
 
     }
 
@@ -203,10 +201,15 @@ public class ClientListener {
         });
     }
 
-    /*@SubscribeEvent
-    public static void onClientSetup(RegisterClientExtensionsEvent event) {
+    @SubscribeEvent
+    public static void registerClientExtensions(RegisterClientExtensionsEvent event){
+        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_EXTENSION, ItemInit.STEAMPUNK_HELMET);
+        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_EXTENSION, ItemInit.STEAMPUNK_CHESTPLATE);
+        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_EXTENSION, ItemInit.STEAMPUNK_LEGGINGS);
+        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_EXTENSION, ItemInit.STEAMPUNK_BOOTS);
+    }
 
-    }*/
+
 
 
 }

@@ -1,4 +1,4 @@
-package github.nitespring.alchemistarsenal.client.render;
+package github.nitespring.alchemistarsenal.client.render.equipment;
 
 import com.google.common.collect.ImmutableList;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;

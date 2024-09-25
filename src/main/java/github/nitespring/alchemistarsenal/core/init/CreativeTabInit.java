@@ -36,6 +36,10 @@ public class CreativeTabInit {
                         output.accept(ItemInit.REPEATING_CROSSBOW.get());
                         output.accept(ItemInit.AUTOMATIC_CROSSBOW.get());
                         output.accept(ItemInit.STEAMPUNK_WINGS.get());
+                        output.accept(ItemInit.STEAMPUNK_HELMET.get());
+                        output.accept(ItemInit.STEAMPUNK_CHESTPLATE.get());
+                        output.accept(ItemInit.STEAMPUNK_LEGGINGS.get());
+                        output.accept(ItemInit.STEAMPUNK_BOOTS.get());
                     })
                     .build());
 

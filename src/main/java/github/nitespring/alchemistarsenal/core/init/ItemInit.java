@@ -3,17 +3,16 @@ package github.nitespring.alchemistarsenal.core.init;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.common.item.arrows.*;
 import github.nitespring.alchemistarsenal.common.item.concoctions.*;
+import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkChestplateItem;
+import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkSuitItem;
 import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkWingsItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
-import net.minecraft.client.resources.metadata.animation.AnimationMetadataSection;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.world.item.ArrowItem;
-import net.minecraft.world.item.CrossbowItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.entity.vehicle.AbstractMinecart;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -26,6 +25,18 @@ public class ItemInit {
 
     public static final DeferredHolder<Item, SteampunkWingsItem> STEAMPUNK_WINGS = ITEMS.register("steampunk_wings",
             ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(1080)));
+    public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_HELMET = ITEMS.register("steampunk_helmet",
+            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.HELMET,
+                    new Item.Properties().stacksTo(1).durability(1080)));
+    public static final DeferredHolder<Item, SteampunkChestplateItem> STEAMPUNK_CHESTPLATE = ITEMS.register("steampunk_chestplate",
+            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().stacksTo(1).durability(1080)));
+    public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
+            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().stacksTo(1).durability(1080)));
+    public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_BOOTS = ITEMS.register("steampunk_boots",
+            ()->new SteampunkChestplateItem(ArmorMaterials.NETHERITE, ArmorItem.Type.BOOTS,
+                    new Item.Properties().stacksTo(1).durability(1080)));
 
     public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
             ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512)));

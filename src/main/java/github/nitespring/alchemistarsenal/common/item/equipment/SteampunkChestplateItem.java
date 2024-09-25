@@ -1,9 +1,14 @@
 package github.nitespring.alchemistarsenal.common.item.equipment;
 
+import com.google.common.base.Suppliers;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
-import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
+import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkSuitModel;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -11,50 +16,40 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.FireworkRocketEntity;
-import net.minecraft.world.item.ElytraItem;
-import net.minecraft.world.item.FireworkRocketItem;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.FireworkExplosion;
-import net.minecraft.world.item.component.Fireworks;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.neoforge.common.ItemAbility;
+import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.Random;
+import java.util.function.Supplier;
 
-public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
+public class SteampunkChestplateItem extends SteampunkSuitItem implements ICustomElytra{
 
-    public static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,
-            "textures/equipment/steampunk_wings.png");
-    public SteampunkWingsItem(Properties properties) {
-        super(properties);
+    public SteampunkChestplateItem(Holder<ArmorMaterial> material, ArmorItem.Type type, Properties properties) {
+        super(material, type, properties);
     }
-
 
     public static boolean isFlyEnabled(ItemStack pElytraStack) {
         return pElytraStack.getDamageValue() < pElytraStack.getMaxDamage() - 1;
     }
 
     @Override
-    public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
-        return pRepair.is(Items.PHANTOM_MEMBRANE);
-    }
-
-    @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        return this.swapWithEquipmentSlot(this, pLevel, pPlayer, pHand);
-    }
-
-    @Override
     public boolean canElytraFly(ItemStack stack, net.minecraft.world.entity.LivingEntity entity) {
-        return SteampunkWingsItem.isFlyEnabled(stack);
+        return SteampunkChestplateItem.isFlyEnabled(stack);
     }
 
 
@@ -134,27 +129,13 @@ public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
         }
         return true;
     }
-
-    @Override
-    public Holder<SoundEvent> getEquipSound() {
-        return SoundEvents.ARMOR_EQUIP_ELYTRA;
-    }
-
-    @Override
-    public EquipmentSlot getEquipmentSlot() {
-        return EquipmentSlot.CHEST;
-    }
-
-
-
     @Override
     public ResourceLocation getDefaultElytraTexture() {
-        return TEXTURE_LOCATION;
+        return SteampunkWingsItem.TEXTURE_LOCATION;
     }
 
     @Override
     public boolean shouldAutoboost() {
         return true;
     }
-
 }
