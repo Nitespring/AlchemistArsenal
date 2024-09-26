@@ -24,24 +24,40 @@ public class ItemInit {
 
 
     public static final DeferredHolder<Item, SteampunkWingsItem> STEAMPUNK_WINGS = ITEMS.register("steampunk_wings",
-            ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(1080)));
+            ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(720).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_HELMET = ITEMS.register("steampunk_helmet",
-            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.HELMET,
-                    new Item.Properties().stacksTo(1).durability(1080)));
+            ()->new SteampunkChestplateItem(
+                    0,0,0,
+                    2.5f,0,
+                    0,0, 0,
+                    ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.HELMET,
+                    new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkChestplateItem> STEAMPUNK_CHESTPLATE = ITEMS.register("steampunk_chestplate",
-            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.CHESTPLATE,
-                    new Item.Properties().stacksTo(1).durability(1080)));
+            ()->new SteampunkChestplateItem(
+                    0,0,0,
+                    0,1.5f,
+                    0,-0.02f, 0,
+                    ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
-            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
-                    new Item.Properties().stacksTo(1).durability(1080)));
+            ()->new SteampunkChestplateItem(
+                    0.1f,0,0.5f,
+                    0,0,
+                    0,0, 0,
+                    ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_BOOTS = ITEMS.register("steampunk_boots",
-            ()->new SteampunkChestplateItem(ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.BOOTS,
-                    new Item.Properties().stacksTo(1).durability(1080)));
+            ()->new SteampunkChestplateItem(
+                    0,0.1f,0,
+                    0,0,
+                    -0.25f,0, +2.5f,
+                    ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.BOOTS,
+                    new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
 
     public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
-            ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512)));
+            ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, RepeatingCrossbow> REPEATING_CROSSBOW = ITEMS.register("repeating_crossbow",
-            ()->new RepeatingCrossbow(new Item.Properties().stacksTo(1).durability(360)));
+            ()->new RepeatingCrossbow(new Item.Properties().stacksTo(1).durability(360).rarity(Rarity.RARE)));
 
     public static final DeferredHolder<Item, CrossbowItem> CROSSBOW_SCYTHE = ITEMS.register("crossbow_scythe",
             ()->new CrossbowScythe(Tiers.IRON, 4,-2.8f,new Item.Properties().stacksTo(1).durability(360).component(DataComponents.CHARGED_PROJECTILES, ChargedProjectiles.EMPTY)));

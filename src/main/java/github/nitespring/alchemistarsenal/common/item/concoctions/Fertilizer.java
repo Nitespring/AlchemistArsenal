@@ -11,11 +11,19 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.monster.Zoglin;
+import net.minecraft.world.entity.monster.Zombie;
+import net.minecraft.world.entity.monster.piglin.Piglin;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -41,6 +49,56 @@ public class Fertilizer extends Item {
         this.range=range;
         this.intensity=intensity;
         this.type=type;
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack stack, Player player, LivingEntity target, InteractionHand usedHand) {
+        if(type == 1){
+            if(target instanceof AgeableMob mob && mob.isBaby()) {
+                mob.setBaby(false);
+                mob.setAge(0);
+                doGrowEntity(player,target,stack);
+                return InteractionResult.CONSUME;
+            }else if(target instanceof Zombie zombie && zombie.isBaby()) {
+                zombie.setBaby(false);
+                doGrowEntity(player,target,stack);
+                return InteractionResult.CONSUME;
+            }else if(target instanceof Piglin piglin && piglin.isBaby()) {
+                piglin.setBaby(false);
+                doGrowEntity(player,target,stack);
+                return InteractionResult.CONSUME;
+            }else if(target instanceof Zoglin zoglin && zoglin.isBaby()) {
+                zoglin.setBaby(false);
+                doGrowEntity(player,target,stack);
+                return InteractionResult.CONSUME;
+            }else{
+                return InteractionResult.FAIL;
+            }
+        }else{
+            return InteractionResult.PASS;
+        }
+    }
+    public void doGrowEntity(Player player, LivingEntity entity, ItemStack stack){
+        Level level = player.level();
+        if(!player.isCreative()){
+            stack.shrink(1);
+        }
+        if(!level.isClientSide()) {
+            for (int i = 0; i <= 25; i++) {
+                ((ServerLevel) level).sendParticles(
+                        ParticleTypes.HAPPY_VILLAGER,
+                        entity.getRandomX(0.75f),
+                        entity.getRandomY(),
+                        entity.getRandomZ(0.75f),
+                        0,
+                        entity.getRandom().nextGaussian() * 0.05,
+                        entity.getRandom().nextGaussian() * 0.05,
+                        entity.getRandom().nextGaussian() * 0.05,
+                        0.1f
+                );
+            }
+        }
+        entity.playSound(SoundEvents.BONE_MEAL_USE);
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ArmorMaterialInit {
                     12,
                     SoundEvents.ARMOR_EQUIP_NETHERITE,
                     9.0F,
-                    0.4F,
+                    0.5F,
                     () -> Ingredient.of(Items.NETHERITE_INGOT)
 
     );

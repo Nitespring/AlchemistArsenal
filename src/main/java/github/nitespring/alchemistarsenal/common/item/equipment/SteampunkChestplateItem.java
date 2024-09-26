@@ -47,9 +47,10 @@ public class SteampunkChestplateItem extends SteampunkSuitItem implements ICusto
 
     public static final Predicate<ItemStack> ROCKETS = predicate -> predicate.is(Items.FIREWORK_ROCKET);
 
-    public SteampunkChestplateItem(Holder<ArmorMaterial> material, ArmorItem.Type type, Properties properties) {
-        super(material, type, properties);
+    public SteampunkChestplateItem(float speedModifier, float jumpModifier, float stepHeightModifier, float miningEfficiencyModifier, float blockBreakSpeed, float fallDamageModifier, float gravityModifier, float safeFallHeightModifier, Holder<ArmorMaterial> material, Type type, Properties properties) {
+        super(speedModifier, jumpModifier, stepHeightModifier, miningEfficiencyModifier, blockBreakSpeed, fallDamageModifier, gravityModifier, safeFallHeightModifier, material, type, properties);
     }
+
 
     public static boolean isFlyEnabled(ItemStack pElytraStack) {
         return pElytraStack.getDamageValue() < pElytraStack.getMaxDamage() - 1;
