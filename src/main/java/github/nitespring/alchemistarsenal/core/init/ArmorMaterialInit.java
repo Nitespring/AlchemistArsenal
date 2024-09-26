@@ -31,15 +31,15 @@ public class ArmorMaterialInit {
     public static final DeferredHolder<ArmorMaterial, ArmorMaterial> TURTLE_MASTER = register(
             "turtle_master",
                     Util.make(new EnumMap<>(ArmorItem.Type.class), p_323381_ -> {
-                                p_323381_.put(ArmorItem.Type.BOOTS, 5);
+                                p_323381_.put(ArmorItem.Type.BOOTS, 4);
                                 p_323381_.put(ArmorItem.Type.LEGGINGS, 8);
-                                p_323381_.put(ArmorItem.Type.CHESTPLATE, 10);
-                                p_323381_.put(ArmorItem.Type.HELMET, 5);
+                                p_323381_.put(ArmorItem.Type.CHESTPLATE, 12);
+                                p_323381_.put(ArmorItem.Type.HELMET, 6);
                                 p_323381_.put(ArmorItem.Type.BODY, 13);
                             }),
                     12,
-                    SoundEvents.ARMOR_EQUIP_NETHERITE,
-                    9.0F,
+                    SoundEvents.ARMOR_EQUIP_TURTLE,
+                    5.0F,
                     0.5F,
                     () -> Ingredient.of(Items.NETHERITE_INGOT)
 
@@ -55,7 +55,7 @@ public class ArmorMaterialInit {
             }),
             14,
             SoundEvents.ARMOR_EQUIP_NETHERITE,
-            5.0F,
+            3.0F,
             0.1F,
             () -> Ingredient.of(Items.NETHERITE_INGOT)
 

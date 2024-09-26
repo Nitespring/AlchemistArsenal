@@ -6,11 +6,13 @@ import github.nitespring.alchemistarsenal.common.item.concoctions.*;
 import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkChestplateItem;
 import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkSuitItem;
 import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkWingsItem;
+import github.nitespring.alchemistarsenal.common.item.equipment.TurtleMasterArmourItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.CrossbowScythe;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.vehicle.AbstractMinecart;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.ChargedProjectiles;
@@ -41,7 +43,7 @@ public class ItemInit {
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
             ()->new SteampunkChestplateItem(
-                    0.1f,0,0.5f,
+                    0.02f,0,0.5f,
                     0,0,
                     0,0, 0,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
@@ -53,6 +55,32 @@ public class ItemInit {
                     -0.25f,0, +2.5f,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.BOOTS,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
+
+    public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_HELMET = ITEMS.register("turtle_master_helmet",
+            ()->new TurtleMasterArmourItem(
+                    -0.01f,0,6.0f, 10.0f,
+                    0, 0,
+                    ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.HELMET,
+                    new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
+    public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_CHESTPLATE = ITEMS.register("turtle_master_chestplate",
+            ()->new TurtleMasterArmourItem(
+                    -0.01f,0.01f,6.0f, 0.0f,
+                    2.5f, 0,
+                    ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.CHESTPLATE,
+                    new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
+    public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_LEGGINGS = ITEMS.register("turtle_master_leggings",
+            ()->new TurtleMasterArmourItem(
+                    0,0,4.0f, 0.0f,
+                    0f, 0.1f,
+                    ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.LEGGINGS,
+                    new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
+    public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_BOOTS = ITEMS.register("turtle_master_boots",
+            ()->new TurtleMasterArmourItem(
+                    0,0,4.0f, 0.0f,
+                    0f, 0.1f,
+                    ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.BOOTS,
+                    new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
+
 
     public static final DeferredHolder<Item, AutomaticCrossbow> AUTOMATIC_CROSSBOW = ITEMS.register("automatic_crossbow",
             ()->new AutomaticCrossbow(new Item.Properties().stacksTo(1).durability(512).rarity(Rarity.EPIC)));

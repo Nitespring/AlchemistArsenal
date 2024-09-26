@@ -40,6 +40,10 @@ public class CreativeTabInit {
                         output.accept(ItemInit.STEAMPUNK_CHESTPLATE.get());
                         output.accept(ItemInit.STEAMPUNK_LEGGINGS.get());
                         output.accept(ItemInit.STEAMPUNK_BOOTS.get());
+                        output.accept(ItemInit.TURTLE_MASTER_HELMET.get());
+                        output.accept(ItemInit.TURTLE_MASTER_CHESTPLATE.get());
+                        output.accept(ItemInit.TURTLE_MASTER_LEGGINGS.get());
+                        output.accept(ItemInit.TURTLE_MASTER_BOOTS.get());
                     })
                     .build());
 
