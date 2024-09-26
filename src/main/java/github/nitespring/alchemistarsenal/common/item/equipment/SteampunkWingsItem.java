@@ -44,7 +44,7 @@ public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
 
     @Override
     public boolean isValidRepairItem(ItemStack pToRepair, ItemStack pRepair) {
-        return pRepair.is(Items.PHANTOM_MEMBRANE);
+        return pRepair.is(Items.COPPER_BLOCK);
     }
 
     @Override

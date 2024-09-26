@@ -23,6 +23,10 @@ public class AlkharsPacketHandler {
 				BoostWingsAction.TYPE,
 				BoostWingsAction.STREAM_CODEC,
 				BoostWingsAction.ServerPayloadHandler::handleData);
+		registrar.playToServer(
+				ShootRocketAction.TYPE,
+				ShootRocketAction.STREAM_CODEC,
+				ShootRocketAction.ServerPayloadHandler::handleData);
 	}
 
 	public static <MSG extends CustomPacketPayload> void sendToServer(MSG message) {

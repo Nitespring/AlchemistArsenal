@@ -4,6 +4,7 @@ import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.core.init.KeybindInit;
 import github.nitespring.alchemistarsenal.networking.AlkharsPacketHandler;
 import github.nitespring.alchemistarsenal.networking.BoostWingsAction;
+import github.nitespring.alchemistarsenal.networking.ShootRocketAction;
 import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
@@ -31,6 +32,23 @@ public class ClientEvents {
 			}
 		}else {
 			isBoostKeyDown=false;
+		}
+
+	}
+
+	private static boolean isShootKeyDown = false;
+
+
+
+	@SubscribeEvent
+	public static void shootKeybind(ClientTickEvent.Pre event) {
+		if(KeybindInit.SHOOT_KEYBIND.get().isDown()) {
+			if(!isShootKeyDown) {
+				AlkharsPacketHandler.sendToServer(new ShootRocketAction());
+				isShootKeyDown=true;
+			}
+		}else {
+			isShootKeyDown=false;
 		}
 
 	}

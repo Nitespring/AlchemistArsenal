@@ -83,7 +83,10 @@ public interface ICustomElytra {
                 boolean hasFuel = false;
                 while (!hasFuel && i <= n) {
                     if (player.getInventory().getItem(i).is(CustomItemTags.STEAMPUNK_WINGS_FUEL)) {
-                        player.getInventory().getItem(i).shrink(1);
+                        if(!player.isCreative()) {
+                            player.getInventory().getItem(i).shrink(1);
+                        }
+                        hasFuel=true;
                     }
                     i++;
                 }
