@@ -2,9 +2,12 @@ package github.nitespring.alchemistarsenal.common.item.equipment;
 
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
+import github.nitespring.alchemistarsenal.core.init.KeybindInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -15,10 +18,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
-import net.minecraft.world.item.ElytraItem;
-import net.minecraft.world.item.FireworkRocketItem;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.FireworkExplosion;
 import net.minecraft.world.item.component.Fireworks;
 import net.minecraft.world.level.Level;
@@ -27,6 +27,7 @@ import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.common.ItemAbility;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
@@ -155,6 +156,17 @@ public class SteampunkWingsItem extends ElytraItem implements ICustomElytra {
     @Override
     public boolean shouldAutoboost() {
         return true;
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(
+                Component.translatable("comment.alkhars.steampunk_wings1")
+                        .append(KeybindInit.BOOST_KEYBIND.get().getKey().getDisplayName())
+                        .append(Component.translatable("comment.alkhars.steampunk_wings2"))
+                        .withStyle(ChatFormatting.AQUA)
+        );
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
 }

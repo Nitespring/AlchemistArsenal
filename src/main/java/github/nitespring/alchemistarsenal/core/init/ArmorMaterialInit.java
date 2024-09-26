@@ -37,7 +37,7 @@ public class ArmorMaterialInit {
                                 p_323381_.put(ArmorItem.Type.HELMET, 6);
                                 p_323381_.put(ArmorItem.Type.BODY, 13);
                             }),
-                    12,
+                    5,
                     SoundEvents.ARMOR_EQUIP_TURTLE,
                     5.0F,
                     0.5F,

@@ -32,20 +32,32 @@ public class MobEffectInit {
     public static final DeferredHolder<MobEffect, MobEffect> LONG_LEGS = MOB_EFFECTS.register("long_legs",
         () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 15003647)
         .addAttributeModifier(Attributes.STEP_HEIGHT,
-                ResourceLocation.withDefaultNamespace("effect.step_height"),
+                ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.step_height"),
                 1.0, AttributeModifier.Operation.ADD_VALUE));
     public static final DeferredHolder<MobEffect, MobEffect> LONG_ARMS = MOB_EFFECTS.register("long_arms",
         () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 10647376)
         .addAttributeModifier(Attributes.ENTITY_INTERACTION_RANGE,
-                ResourceLocation.withDefaultNamespace("effect.entity_interaction_range"),
+                ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.entity_interaction_range"),
                 1.5, AttributeModifier.Operation.ADD_VALUE)
         .addAttributeModifier(Attributes.BLOCK_INTERACTION_RANGE,
-                ResourceLocation.withDefaultNamespace("effect.block_interaction_range"),
+                ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.block_interaction_range"),
                 1.5, AttributeModifier.Operation.ADD_VALUE));
+    public static final DeferredHolder<MobEffect, MobEffect> ENGORGEMENT = MOB_EFFECTS.register("engorgement",
+            () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 9266590)
+                    .addAttributeModifier(Attributes.SCALE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up"),
+                            1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+    public static final DeferredHolder<MobEffect, MobEffect> SHRINKAGE = MOB_EFFECTS.register("shrinkage",
+            () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 16751439)
+                    .addAttributeModifier(Attributes.SCALE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down"),
+                            -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
 
 
     public static final DeferredHolder<Potion, Potion> TASTY_POTION = POTIONS.register("tasty_potion",
-            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SPEED,2000,2)));
+            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SPEED,10000,2)));
+    public static final DeferredHolder<Potion, Potion> UNTASTY_POTION = POTIONS.register("untasty_potion",
+            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,8000,0)));
     public static final DeferredHolder<Potion, Potion> LONG_LEGS_POTION = POTIONS.register("long_legs",
             () -> new Potion(new MobEffectInstance(LONG_LEGS,20000)));
     public static final DeferredHolder<Potion, Potion> LONGER_LONG_LEGS_POTION = POTIONS.register("long_long_legs",
@@ -62,6 +74,29 @@ public class MobEffectInit {
             () -> new Potion(new MobEffectInstance(LONG_ARMS,12000,1)));
     public static final DeferredHolder<Potion, Potion> LONGEST_ARMS_POTION = POTIONS.register("longest_arms",
             () -> new Potion(new MobEffectInstance(LONG_ARMS,4000,2)));
-
+    public static final DeferredHolder<Potion, Potion> ENGORGEMENT_POTION = POTIONS.register("engorgement_minor",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,8000,0)));
+    public static final DeferredHolder<Potion, Potion> ENGORGEMENT_II_POTION = POTIONS.register("engorgement",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,6000,1)));
+    public static final DeferredHolder<Potion, Potion> ENGORGEMENT_III_POTION = POTIONS.register("engorgement_maior",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,4000,2)));
+    public static final DeferredHolder<Potion, Potion> LONG_ENGORGEMENT_POTION = POTIONS.register("long_engorgement_minor",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,20000,0)));
+    public static final DeferredHolder<Potion, Potion> LONG_ENGORGEMENT_II_POTION = POTIONS.register("long_engorgement",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,15000,1)));
+    public static final DeferredHolder<Potion, Potion> LONG_ENGORGEMENT_III_POTION = POTIONS.register("long_engorgement_maior",
+            () -> new Potion(new MobEffectInstance(ENGORGEMENT,10000,2)));
+    public static final DeferredHolder<Potion, Potion> SHRINKAGE_POTION = POTIONS.register("shrinkage_minor",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,8000,0)));
+    public static final DeferredHolder<Potion, Potion> SHRINKAGE_II_POTION = POTIONS.register("shrinkage",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,6000,1)));
+    public static final DeferredHolder<Potion, Potion> SHRINKAGE_III_POTION = POTIONS.register("shrinkage_maior",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,4000,2)));
+    public static final DeferredHolder<Potion, Potion> LONG_SHRINKAGE_POTION = POTIONS.register("long_shrinkage_minor",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,20000,0)));
+    public static final DeferredHolder<Potion, Potion> LONG_SHRINKAGE_II_POTION = POTIONS.register("long_shrinkage",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,15000,1)));
+    public static final DeferredHolder<Potion, Potion> LONG_SHRINKAGE_III_POTION = POTIONS.register("long_shrinkage_maior",
+            () -> new Potion(new MobEffectInstance(SHRINKAGE,10000,2)));
 
 }

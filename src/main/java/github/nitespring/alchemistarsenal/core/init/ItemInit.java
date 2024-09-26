@@ -28,7 +28,7 @@ public class ItemInit {
     public static final DeferredHolder<Item, SteampunkWingsItem> STEAMPUNK_WINGS = ITEMS.register("steampunk_wings",
             ()->new SteampunkWingsItem(new Item.Properties().stacksTo(1).durability(720).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_HELMET = ITEMS.register("steampunk_helmet",
-            ()->new SteampunkChestplateItem(
+            ()->new SteampunkSuitItem(
                     0,0,0,
                     2.5f,0,
                     0,0, 0,
@@ -42,14 +42,14 @@ public class ItemInit {
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
-            ()->new SteampunkChestplateItem(
+            ()->new SteampunkSuitItem(
                     0.02f,0,0.5f,
                     0,0,
                     0,0, 0,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_BOOTS = ITEMS.register("steampunk_boots",
-            ()->new SteampunkChestplateItem(
+            ()->new SteampunkSuitItem(
                     0,0.1f,0,
                     0,0,
                     -0.25f,0, +2.5f,

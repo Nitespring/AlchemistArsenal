@@ -3,7 +3,9 @@ package github.nitespring.alchemistarsenal.common.item.equipment;
 import com.google.common.base.Suppliers;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkSuitModel;
+import github.nitespring.alchemistarsenal.core.init.KeybindInit;
 import github.nitespring.alchemistarsenal.core.tags.CustomItemTags;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -12,6 +14,7 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -241,6 +244,27 @@ public class SteampunkChestplateItem extends SteampunkSuitItem implements ICusto
 
             stack.hurtAndBreak(3, player, EquipmentSlot.CHEST);
         }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+        tooltipComponents.add(
+                Component.translatable("comment.alkhars.steampunk_chestplate")
+                        .withStyle(ChatFormatting.GRAY)
+        );
+        tooltipComponents.add(
+                Component.translatable("comment.alkhars.steampunk_wings1")
+                        .append(KeybindInit.BOOST_KEYBIND.get().getKey().getDisplayName())
+                        .append(Component.translatable("comment.alkhars.steampunk_wings2"))
+                        .withStyle(ChatFormatting.AQUA)
+        );
+        tooltipComponents.add(
+                Component.translatable("comment.alkhars.steampunk_chestplate1")
+                        .append(KeybindInit.SHOOT_KEYBIND.get().getKey().getDisplayName())
+                        .append(Component.translatable("comment.alkhars.steampunk_chestplate2"))
+                        .withStyle(ChatFormatting.YELLOW)
+        );
+        super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
     }
 
 
