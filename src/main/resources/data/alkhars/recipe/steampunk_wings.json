@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "CGC",
+        "FWF",
+        "FBF"
+    ],
+    "key": {
+        "W": {
+            "item": "minecraft:elytra"
+        },
+        "F": {
+            "item": "minecraft:feather"
+        },
+        "C": {
+            "item": "minecraft:copper_block"
+        },
+        "G": {
+            "item": "minecraft:gold_block"
+        },
+        "B": {
+            "item": "minecraft:blast_furnace"
+        }
+    },
+    "result": {
+        "id": "alkhars:steampunk_wings",
+        "count": 1
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "equipment",
+    "pattern": [
+        "NCN",
+        "LQL",
+        "CAC"
+    ],
+    "key": {
+        "N": {
+            "item": "minecraft:netherite_ingot"
+        },
+        "C": {
+            "item": "minecraft:copper_block"
+        },
+        "L": {
+            "item": "minecraft:leather"
+        },
+        "A": {
+            "item": "minecraft:amethyst_shard"
+        },
+        "Q": {
+            "item": "minecraft:quartz"
+        }
+    },
+    "result": {
+        "id": "alkhars:steampunk_helmet",
+        "count": 1
+    }
+}
