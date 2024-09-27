@@ -4,6 +4,7 @@ import com.google.common.base.Suppliers;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import github.nitespring.alchemistarsenal.client.render.equipment.SteampunkSuitModel;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -138,8 +139,15 @@ public class SteampunkSuitItem extends ArmorItem{
             EntityModelSet models = Minecraft.getInstance().getEntityModels();
             ModelPart root = models.bakeLayer(slot == EquipmentSlot.LEGS ? ModelLayers.PLAYER_INNER_ARMOR : SteampunkSuitModel.LAYER_LOCATION);
 
-            SteampunkSuitModel aModel = new SteampunkSuitModel(root);
-            return aModel;
+            if(slot!=EquipmentSlot.LEGS){
+                SteampunkSuitModel<LivingEntity> aModel = new SteampunkSuitModel<LivingEntity>(root);
+                aModel.setupAnim(living, 0, 0, 0, 0, 0);
+                return aModel;
+            }else{
+                HumanoidArmorModel<LivingEntity> aModel = new HumanoidArmorModel<LivingEntity>(root);
+                return aModel;
+            }
+
         }
 
 

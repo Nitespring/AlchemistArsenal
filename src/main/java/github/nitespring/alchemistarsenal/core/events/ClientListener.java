@@ -49,15 +49,22 @@ public class ClientListener {
 
         mappedfashion.clear();
 
-        event.getSkins().forEach(skinTypeName -> {
-            if (event.getSkin(skinTypeName) instanceof EntityRenderer) {
-
-                LivingEntityRenderer renderer = (LivingEntityRenderer)event.getSkin(skinTypeName);
-
+        event.getEntityTypes().forEach(entityTypeName -> {
+            if(event.getRenderer(entityTypeName) instanceof LivingEntityRenderer<?,?> renderer){
                 renderer.addLayer(new SteampunkWingsLayer<>(renderer,event.getEntityModels()));
                 mappedfashion.put(new SteampunkWingsLayer<>(renderer,event.getEntityModels()), renderer);
             }
         });
+
+        /*event.getSkins().forEach(skinTypeName -> {
+            if (event.getSkin(skinTypeName) instanceof PlayerRenderer) {
+
+                PlayerRenderer renderer = (PlayerRenderer)event.getSkin(skinTypeName);
+
+                renderer.addLayer(new SteampunkWingsLayer<>(renderer,event.getEntityModels()));
+                mappedfashion.put(new SteampunkWingsLayer<>(renderer,event.getEntityModels()), renderer);
+            }
+        });*/
     }
 
     public static HashMap<RenderLayer<?, ?>, LivingEntityRenderer> getMappedfashion() {

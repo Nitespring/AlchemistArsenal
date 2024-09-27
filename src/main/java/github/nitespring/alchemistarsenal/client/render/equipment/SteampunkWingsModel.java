@@ -20,11 +20,17 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
     private final ModelPart leftWing;
     private final ModelPart rightWing;
     private final ModelPart boiler;
+    private final ModelPart boosters;
+    private final ModelPart booster_right;
+    private final ModelPart booster_left;
     public SteampunkWingsModel(ModelPart root) {
         super(root);
         this.leftWing = root.getChild("left_wing");
         this.rightWing = root.getChild("right_wing");
         this.boiler = root.getChild("boiler");
+        this.boosters = boiler.getChild("boosters");
+        this.booster_right = boosters.getChild("booster_right");
+        this.booster_left = boosters.getChild("booster_left");
     }
 
     public static LayerDefinition createBodyLayer() {
@@ -78,6 +84,15 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
                                 8.0F, 4.0F, 4.0F,
                                 new CubeDeformation(0.25F)),
                 PartPose.offset(0.0F, 24.0F, 0.0F));
+
+        PartDefinition boosters = boiler.addOrReplaceChild("boosters", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 3.0F));
+
+        PartDefinition booster_right = boosters.addOrReplaceChild("booster_right", CubeListBuilder.create().texOffs(29, 40).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.7F))
+                .texOffs(29, 52).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.4F)), PartPose.offsetAndRotation(6.0F, -1.0F, -0.5F, -0.3054F, 0.0F, 0.0F));
+
+        PartDefinition booster_left = boosters.addOrReplaceChild("booster_left", CubeListBuilder.create().texOffs(29, 40).mirror().addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.7F)).mirror(false)
+                .texOffs(29, 52).mirror().addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.4F)).mirror(false), PartPose.offsetAndRotation(-6.0F, -1.0F, -0.5F, -0.3054F, 0.0F, 0.0F));
+
 
         return LayerDefinition.create(meshdefinition, 64, 64);
     }

@@ -12,12 +12,22 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class SteampunkSuitModel<T extends LivingEntity> extends HumanoidArmorModel<T> {
 
+
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(
             ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "steampunk_suit"),
             "outer"
     );
+
+    private final ModelPart cannons;
+    public final ModelPart cannon_right;
+    public final ModelPart cannon_left;
+
     public SteampunkSuitModel(ModelPart root) {
         super(root);
+        this.cannons = body.getChild("cannons");
+        this.cannon_right = cannons.getChild("cannon_right");
+        this.cannon_left = cannons.getChild("cannon_left");
+
     }
 
 
@@ -40,6 +50,26 @@ public class SteampunkSuitModel<T extends LivingEntity> extends HumanoidArmorMod
 
         PartDefinition body_overlay = body.addOrReplaceChild("body_overlay", CubeListBuilder.create().texOffs(16, 48).addBox(-4.0F, -24.0F, -2.0F, 8.0F, 12.0F, 4.0F, new CubeDeformation(0.9F)), PartPose.offset(0.0F, 24.0F, 0.0F));
 
+        PartDefinition cannons = body.addOrReplaceChild("cannons", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+
+        PartDefinition cannon_right = cannons.addOrReplaceChild("cannon_right", CubeListBuilder.create().texOffs(88, 0).addBox(-2.0F, -4.0F, -1.0F, 4.0F, 4.0F, 6.0F, new CubeDeformation(-0.25F))
+                .texOffs(64, 0).addBox(-2.0F, -4.0F, -8.0F, 4.0F, 4.0F, 8.0F, new CubeDeformation(-0.75F))
+                .texOffs(64, 12).addBox(-2.0F, -4.0F, -8.0F, 4.0F, 4.0F, 8.0F, new CubeDeformation(-0.5F))
+                .texOffs(112, 2).addBox(0.0F, -6.5F, 4.0F, 0.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offset(-7.0F, 0.0F, 0.0F));
+
+        PartDefinition cube_r1 = cannon_right.addOrReplaceChild("cube_r1", CubeListBuilder.create().texOffs(79, 31).addBox(-3.0F, -5.0F, -1.0F, 6.0F, 2.0F, 2.0F, new CubeDeformation(-0.5F)), PartPose.offsetAndRotation(0.0F, -1.5F, 0.75F, -0.6109F, 0.0F, 0.0F));
+
+        PartDefinition cube_r2 = cannon_right.addOrReplaceChild("cube_r2", CubeListBuilder.create().texOffs(82, 36).addBox(-3.0F, -6.0F, 0.0F, 6.0F, 8.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 1.0F, -0.6109F, 0.0F, 0.0F));
+
+        PartDefinition cannon_left = cannons.addOrReplaceChild("cannon_left", CubeListBuilder.create().texOffs(88, 0).mirror().addBox(-2.0F, -4.0F, -1.0F, 4.0F, 4.0F, 6.0F, new CubeDeformation(-0.25F)).mirror(false)
+                .texOffs(64, 0).mirror().addBox(-2.0F, -4.0F, -8.0F, 4.0F, 4.0F, 8.0F, new CubeDeformation(-0.75F)).mirror(false)
+                .texOffs(64, 12).mirror().addBox(-2.0F, -4.0F, -8.0F, 4.0F, 4.0F, 8.0F, new CubeDeformation(-0.5F)).mirror(false)
+                .texOffs(112, 2).mirror().addBox(0.0F, -6.5F, 4.0F, 0.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offset(7.0F, 0.0F, 0.0F));
+
+        PartDefinition cube_r3 = cannon_left.addOrReplaceChild("cube_r3", CubeListBuilder.create().texOffs(79, 31).mirror().addBox(-3.0F, -5.0F, -1.0F, 6.0F, 2.0F, 2.0F, new CubeDeformation(-0.5F)).mirror(false), PartPose.offsetAndRotation(0.0F, -1.5F, 0.75F, -0.6109F, 0.0F, 0.0F));
+
+        PartDefinition cube_r4 = cannon_left.addOrReplaceChild("cube_r4", CubeListBuilder.create().texOffs(82, 36).mirror().addBox(-3.0F, -6.0F, 0.0F, 6.0F, 8.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -2.0F, 1.0F, -0.6109F, 0.0F, 0.0F));
+
         PartDefinition skirt = body.addOrReplaceChild("skirt", CubeListBuilder.create(), PartPose.offset(0.0F, 14.0F, 0.0F));
 
         PartDefinition skirt_right = skirt.addOrReplaceChild("skirt_right", CubeListBuilder.create(), PartPose.offset(-0.5F, 0.0F, 0.0F));
@@ -58,10 +88,24 @@ public class SteampunkSuitModel<T extends LivingEntity> extends HumanoidArmorMod
 
         PartDefinition left_leg_overlay = left_leg.addOrReplaceChild("left_leg_overlay", CubeListBuilder.create().texOffs(0, 32).mirror().addBox(-2.0F, 0.0F, -2.0F, 4.0F, 12.0F, 4.0F, new CubeDeformation(1.0F)).mirror(false), PartPose.offset(0.0F, 0.0F, 0.0F));
 
+
+
         return LayerDefinition.create(meshdefinition, 128, 64);
 
     }
 
+    @Override
+    public void setupAnim(T entity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
+        super.setupAnim(entity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+        //body.getChild("cannons").copyFrom(this.body);
+        //cannon_left.xRot= entity.yHeadRot;
+        cannon_left.yRot= (float) (entity.yHeadRot*Math.PI/180f);
+        //cannon_right.xRot= head.xRot;
+        cannon_right.yRot= cannon_left.yRot;
+    }
 
-
+    @Override
+    public void copyPropertiesTo(HumanoidModel<T> pModel) {
+        super.copyPropertiesTo(pModel);
+    }
 }
