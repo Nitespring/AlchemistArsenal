@@ -188,10 +188,11 @@ public class SteampunkChestplateItem extends SteampunkSuitItem implements ICusto
             Random rand = new Random();
             Level level = player.level();
             Vec3 pos = player.position();
+            Vec3 poseye = new Vec3(pos.x,player.getEyeY(), pos.z);
             Vec3 aim = player.getLookAngle();
-            Vec3 pos1 = pos.add(
+            Vec3 pos1 = poseye.add(
                     1.5 * aim.x + rand.nextFloat(-0.5f,0.5f),
-                    1.5 * aim.y + rand.nextFloat(-0.15f,0.15f) + 2.0,
+                    1.5 * aim.y + rand.nextFloat(-0.15f,0.15f) + 0.25,
                     1.5 * aim.z + rand.nextFloat(-0.5f,0.5f));
 
             if (!level.isClientSide()) {

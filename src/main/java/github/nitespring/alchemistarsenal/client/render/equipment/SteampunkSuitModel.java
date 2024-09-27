@@ -1,5 +1,7 @@
 package github.nitespring.alchemistarsenal.client.render.equipment;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import github.nitespring.alchemistarsenal.AlchemistArsenal;
 import net.minecraft.client.model.HumanoidArmorModel;
 import net.minecraft.client.model.HumanoidModel;
@@ -17,13 +19,14 @@ public class SteampunkSuitModel<T extends LivingEntity> extends HumanoidArmorMod
             ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "steampunk_suit"),
             "outer"
     );
-
+    private final ModelPart skirt;
     private final ModelPart cannons;
     public final ModelPart cannon_right;
     public final ModelPart cannon_left;
 
     public SteampunkSuitModel(ModelPart root) {
         super(root);
+        this.skirt = body.getChild("skirt");
         this.cannons = body.getChild("cannons");
         this.cannon_right = cannons.getChild("cannon_right");
         this.cannon_left = cannons.getChild("cannon_left");
@@ -99,13 +102,43 @@ public class SteampunkSuitModel<T extends LivingEntity> extends HumanoidArmorMod
         super.setupAnim(entity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
         //body.getChild("cannons").copyFrom(this.body);
         //cannon_left.xRot= entity.yHeadRot;
-        cannon_left.yRot= (float) (entity.yHeadRot*Math.PI/180f);
+        /*cannon_left.yRot= head.yRot;
         //cannon_right.xRot= head.xRot;
-        cannon_right.yRot= cannon_left.yRot;
+        cannon_right.yRot= cannon_left.yRot;*/
     }
 
     @Override
     public void copyPropertiesTo(HumanoidModel<T> pModel) {
         super.copyPropertiesTo(pModel);
+    }
+
+    @Override
+    public void prepareMobModel(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pPartialTick) {
+        super.prepareMobModel(pEntity, pLimbSwing, pLimbSwingAmount, pPartialTick);
+    }
+
+    @Override
+    public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, int pColor) {
+        float cannonYRot = Math.signum(head.yRot)*Math.min(0.63f,Math.abs(head.yRot));
+        float cannonXRot = Math.min(0.24f,Math.signum(head.xRot)*Math.min(0.98f,Math.abs(head.xRot)));
+        cannon_left.yRot=cannonYRot;
+        cannon_right.yRot=cannonYRot;
+
+        float f11 = 14.0f;
+        float f12 = 0.0f;
+        if(crouching){
+            f11=13f;
+            f12=-2.75f;
+            cannon_left.xRot=cannonXRot-body.xRot;
+            cannon_right.xRot=cannonXRot-body.xRot;
+        }else{
+            cannon_left.xRot=cannonXRot;
+            cannon_right.xRot=cannonXRot;
+        }
+        this.skirt.y=f11;
+        this.skirt.z=f12;
+        this.skirt.xRot = -body.xRot;
+        //System.out.println(cannonXRot);
+        super.renderToBuffer(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pColor);
     }
 }

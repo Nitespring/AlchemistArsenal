@@ -87,11 +87,27 @@ public class SteampunkWingsModel<T extends LivingEntity> extends ElytraModel<T>{
 
         PartDefinition boosters = boiler.addOrReplaceChild("boosters", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 3.0F));
 
-        PartDefinition booster_right = boosters.addOrReplaceChild("booster_right", CubeListBuilder.create().texOffs(29, 40).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.7F))
-                .texOffs(29, 52).addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.4F)), PartPose.offsetAndRotation(6.0F, -1.0F, -0.5F, -0.3054F, 0.0F, 0.0F));
+        PartDefinition booster_right = boosters.addOrReplaceChild("booster_right", CubeListBuilder.create()
+                .texOffs(29, 40)
+                .addBox(-2.5F, -16.5F, 0.0F,
+                        4.0F, 7.0F, 4.0F,
+                        new CubeDeformation(-0.7F))
+                .texOffs(29, 52)
+                .addBox(-2.5F, -16.5F, 0.0F,
+                        4.0F, 7.0F, 4.0F,
+                        new CubeDeformation(-0.4F)),
+                PartPose.offsetAndRotation(6.0F, -1.0F, -0.5F, 0.3054F, 0.0F, 0.0F));
 
-        PartDefinition booster_left = boosters.addOrReplaceChild("booster_left", CubeListBuilder.create().texOffs(29, 40).mirror().addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.7F)).mirror(false)
-                .texOffs(29, 52).mirror().addBox(-2.0F, -2.0F, -2.0F, 4.0F, 7.0F, 4.0F, new CubeDeformation(-0.4F)).mirror(false), PartPose.offsetAndRotation(-6.0F, -1.0F, -0.5F, -0.3054F, 0.0F, 0.0F));
+        PartDefinition booster_left = boosters.addOrReplaceChild("booster_left", CubeListBuilder.create()
+                .texOffs(29, 40).mirror()
+                .addBox(-1.5F, -16.5F, 0.0F,
+                        4.0F, 7.0F, 4.0F,
+                        new CubeDeformation(-0.7F)).mirror(false)
+                .texOffs(29, 52).mirror()
+                        .addBox(-1.5F, -16.5F, 0.0F,
+                        4.0F, 7.0F, 4.0F,
+                        new CubeDeformation(-0.4F)).mirror(false),
+                PartPose.offsetAndRotation(-6.0F, -1.0F, -0.5F, 0.3054F, 0.0F, 0.0F));
 
 
         return LayerDefinition.create(meshdefinition, 64, 64);

@@ -141,7 +141,7 @@ public class SteampunkSuitItem extends ArmorItem{
 
             if(slot!=EquipmentSlot.LEGS){
                 SteampunkSuitModel<LivingEntity> aModel = new SteampunkSuitModel<LivingEntity>(root);
-                aModel.setupAnim(living, 0, 0, 0, 0, 0);
+                //aModel.setupAnim(living, 0, 0, 0, 0, 0);
                 return aModel;
             }else{
                 HumanoidArmorModel<LivingEntity> aModel = new HumanoidArmorModel<LivingEntity>(root);

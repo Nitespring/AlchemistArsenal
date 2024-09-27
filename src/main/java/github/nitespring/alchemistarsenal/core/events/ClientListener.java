@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.entity.FireworkEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingEntityRenderer;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.ResourceLocation;
@@ -49,6 +50,12 @@ public class ClientListener {
 
         mappedfashion.clear();
 
+        /*event.getEntityTypes().forEach(entityTypeName -> {
+            if(event.getRenderer(entityTypeName) instanceof LivingEntityRenderer<?,?> renderer){
+                renderer.addLayer(new SteampunkWingsLayer<>(renderer,event.getEntityModels()));
+                mappedfashion.put(new SteampunkWingsLayer<>(renderer,event.getEntityModels()), renderer);
+            }
+        });*/
         event.getEntityTypes().forEach(entityTypeName -> {
             if(event.getRenderer(entityTypeName) instanceof LivingEntityRenderer<?,?> renderer){
                 renderer.addLayer(new SteampunkWingsLayer<>(renderer,event.getEntityModels()));
@@ -56,7 +63,7 @@ public class ClientListener {
             }
         });
 
-        /*event.getSkins().forEach(skinTypeName -> {
+        event.getSkins().forEach(skinTypeName -> {
             if (event.getSkin(skinTypeName) instanceof PlayerRenderer) {
 
                 PlayerRenderer renderer = (PlayerRenderer)event.getSkin(skinTypeName);
@@ -64,7 +71,7 @@ public class ClientListener {
                 renderer.addLayer(new SteampunkWingsLayer<>(renderer,event.getEntityModels()));
                 mappedfashion.put(new SteampunkWingsLayer<>(renderer,event.getEntityModels()), renderer);
             }
-        });*/
+        });
     }
 
     public static HashMap<RenderLayer<?, ?>, LivingEntityRenderer> getMappedfashion() {
