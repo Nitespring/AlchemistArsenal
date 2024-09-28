@@ -60,7 +60,7 @@ public class SteampunkSuitItem extends ArmorItem{
                     if (speedModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.MOVEMENT_SPEED,
-                                new AttributeModifier(resourcelocation, speedModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, speedModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
@@ -81,14 +81,14 @@ public class SteampunkSuitItem extends ArmorItem{
                     if (miningEfficiencyModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.MINING_EFFICIENCY,
-                                new AttributeModifier(resourcelocation, (double)miningEfficiencyModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, (double)miningEfficiencyModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
                     if (blockBreakSpeed != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.BLOCK_BREAK_SPEED,
-                                new AttributeModifier(resourcelocation, (double)blockBreakSpeed, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, (double)blockBreakSpeed, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
@@ -102,7 +102,7 @@ public class SteampunkSuitItem extends ArmorItem{
                     if (fallDamageModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.FALL_DAMAGE_MULTIPLIER,
-                                new AttributeModifier(resourcelocation, (double)fallDamageModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, (double)fallDamageModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }

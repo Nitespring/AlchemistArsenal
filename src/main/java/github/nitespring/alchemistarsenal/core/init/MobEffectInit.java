@@ -46,18 +46,56 @@ public class MobEffectInit {
             () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 9266590)
                     .addAttributeModifier(Attributes.SCALE,
                             ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up"),
-                            1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                            1.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_speed"),
+                            0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_jump"),
+                            0.3, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.GRAVITY,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_gravity"),
+                            0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.STEP_HEIGHT,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_step"),
+                            0.4, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.SAFE_FALL_DISTANCE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_safe_fall"),
+                            1.0f, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_up_knockback"),
+                            0.5, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
     public static final DeferredHolder<MobEffect, MobEffect> SHRINKAGE = MOB_EFFECTS.register("shrinkage",
             () -> new SimpleMobEffect(MobEffectCategory.BENEFICIAL, 16751439)
                     .addAttributeModifier(Attributes.SCALE,
                             ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down"),
-                            -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL));
+                            -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.MOVEMENT_SPEED,
+                          ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_speed"),
+                            -0.07, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.GRAVITY,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_gravity"),
+                            -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.STEP_HEIGHT,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_step"),
+                            -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.SAFE_FALL_DISTANCE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_safe_fall"),
+                            -0.5f, AttributeModifier.Operation.ADD_VALUE)
+                    .addAttributeModifier(Attributes.JUMP_STRENGTH,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_jump"),
+                            -0.1, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+                    .addAttributeModifier(Attributes.KNOCKBACK_RESISTANCE,
+                            ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID,"effect.scale_down_knockback"),
+                            -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL)
+    );
 
 
     public static final DeferredHolder<Potion, Potion> TASTY_POTION = POTIONS.register("tasty_potion",
-            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SPEED,10000,2)));
+            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SPEED,2000,2)));
     public static final DeferredHolder<Potion, Potion> UNTASTY_POTION = POTIONS.register("untasty_potion",
-            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,8000,0)));
+            () -> new Potion(new MobEffectInstance(MobEffects.DIG_SLOWDOWN,2000,0)));
     public static final DeferredHolder<Potion, Potion> LONG_LEGS_POTION = POTIONS.register("long_legs",
             () -> new Potion(new MobEffectInstance(LONG_LEGS,20000)));
     public static final DeferredHolder<Potion, Potion> LONGER_LONG_LEGS_POTION = POTIONS.register("long_long_legs",

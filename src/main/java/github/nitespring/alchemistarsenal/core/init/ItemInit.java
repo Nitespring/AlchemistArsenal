@@ -30,20 +30,20 @@ public class ItemInit {
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_HELMET = ITEMS.register("steampunk_helmet",
             ()->new SteampunkSuitItem(
                     0,0,0,
-                    2.5f,0,
+                    0.5f,0,
                     0,0, 0,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.HELMET,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkChestplateItem> STEAMPUNK_CHESTPLATE = ITEMS.register("steampunk_chestplate",
             ()->new SteampunkChestplateItem(
                     0,0,0,
-                    0,1.5f,
+                    0,0.25f,
                     0,-0.02f, 0,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, SteampunkSuitItem> STEAMPUNK_LEGGINGS = ITEMS.register("steampunk_leggings",
             ()->new SteampunkSuitItem(
-                    0.02f,0,0.5f,
+                    0.1f,0,0.5f,
                     0,0,
                     0,0, 0,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.LEGGINGS,
@@ -52,32 +52,32 @@ public class ItemInit {
             ()->new SteampunkSuitItem(
                     0,0.1f,0,
                     0,0,
-                    -0.25f,0, +2.5f,
+                    -0.5f,0, +2.5f,
                     ArmorMaterialInit.STEAMPUNK, ArmorItem.Type.BOOTS,
                     new Item.Properties().stacksTo(1).durability(1080).rarity(Rarity.EPIC)));
 
     public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_HELMET = ITEMS.register("turtle_master_helmet",
             ()->new TurtleMasterArmourItem(
-                    -0.01f,0,6.0f, 10.0f,
+                    -0.1f,0, 0.4f,6.0f, 10.0f,
                     0, 0,
                     ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.HELMET,
                     new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_CHESTPLATE = ITEMS.register("turtle_master_chestplate",
             ()->new TurtleMasterArmourItem(
-                    -0.01f,0.01f,6.0f, 0.0f,
+                    -0.1f,0.01f,0.6f,6.0f, 0.0f,
                     2.5f, 0,
                     ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.CHESTPLATE,
                     new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_LEGGINGS = ITEMS.register("turtle_master_leggings",
             ()->new TurtleMasterArmourItem(
-                    0,0,4.0f, 0.0f,
-                    0f, 0.1f,
+                    -0.05f,0, 0.3f,4.0f, 0.0f,
+                    0f, 1.0f,
                     ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.LEGGINGS,
                     new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
     public static final DeferredHolder<Item, TurtleMasterArmourItem> TURTLE_MASTER_BOOTS = ITEMS.register("turtle_master_boots",
             ()->new TurtleMasterArmourItem(
-                    0,0,4.0f, 0.0f,
-                    0f, 0.1f,
+                    -0.05f,0,0.2f,4.0f, 0.0f,
+                    0f, 1.0f,
                     ArmorMaterialInit.TURTLE_MASTER, ArmorItem.Type.BOOTS,
                     new Item.Properties().stacksTo(1).durability(1720).rarity(Rarity.EPIC)));
 

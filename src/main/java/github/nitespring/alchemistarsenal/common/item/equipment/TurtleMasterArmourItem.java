@@ -31,7 +31,7 @@ public class TurtleMasterArmourItem extends ArmorItem{
     public static final ResourceLocation TEXTURE_LOCATION_OUTER_LAYER = ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "textures/equipment/turtle_master_armour.png");
     public static final ResourceLocation TEXTURE_LOCATION_INNER_LAYER = ResourceLocation.fromNamespaceAndPath(AlchemistArsenal.MODID, "textures/equipment/turtle_master_leggings.png");
     private final Supplier<ItemAttributeModifiers> customModifiers;
-    public TurtleMasterArmourItem(float speedModifier, float gravityModifier,
+    public TurtleMasterArmourItem(float speedModifier, float gravityModifier, float fallDamageModifier,
                                   float healthBoost, float oxygenBonus,
                                   float submergedMiningSpeedModifier,
                                   float waterMovementEfficiencyModifier,
@@ -61,7 +61,7 @@ public class TurtleMasterArmourItem extends ArmorItem{
                     if (speedModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.MOVEMENT_SPEED,
-                                new AttributeModifier(resourcelocation, speedModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, speedModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
@@ -69,6 +69,13 @@ public class TurtleMasterArmourItem extends ArmorItem{
                         itemattributemodifiers$builder.add(
                                 Attributes.GRAVITY,
                                 new AttributeModifier(resourcelocation, (double)gravityModifier, AttributeModifier.Operation.ADD_VALUE),
+                                equipmentslotgroup
+                        );
+                    }
+                    if (fallDamageModifier != 0.0F) {
+                        itemattributemodifiers$builder.add(
+                                Attributes.FALL_DAMAGE_MULTIPLIER,
+                                new AttributeModifier(resourcelocation, (double)fallDamageModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
@@ -89,14 +96,14 @@ public class TurtleMasterArmourItem extends ArmorItem{
                     if (waterMovementEfficiencyModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.WATER_MOVEMENT_EFFICIENCY,
-                                new AttributeModifier(resourcelocation, (double)waterMovementEfficiencyModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, (double)waterMovementEfficiencyModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
                     if (submergedMiningSpeedModifier != 0.0F) {
                         itemattributemodifiers$builder.add(
                                 Attributes.SUBMERGED_MINING_SPEED,
-                                new AttributeModifier(resourcelocation, (double)submergedMiningSpeedModifier, AttributeModifier.Operation.ADD_VALUE),
+                                new AttributeModifier(resourcelocation, (double)submergedMiningSpeedModifier, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
                                 equipmentslotgroup
                         );
                     }
