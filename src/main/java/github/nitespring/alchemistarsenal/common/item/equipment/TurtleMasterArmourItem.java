@@ -123,19 +123,6 @@ public class TurtleMasterArmourItem extends ArmorItem{
         return slot == EquipmentSlot.LEGS ? TEXTURE_LOCATION_INNER_LAYER : TEXTURE_LOCATION_OUTER_LAYER;
     }
 
-    public static final IClientItemExtensions TURTLE_ARMOUR_CLIENT_EXTENSIONS = new IClientItemExtensions(){
-        //private static final ArmorRender INSTANCE = new ArmorRender();
 
-        @Override
-        public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> model) {
-            EntityModelSet models = Minecraft.getInstance().getEntityModels();
-            ModelPart root = models.bakeLayer(slot == EquipmentSlot.LEGS ? ModelLayers.PLAYER_INNER_ARMOR : TurtleMasterArmourModel.LAYER_LOCATION);
-
-            TurtleMasterArmourModel aModel = new TurtleMasterArmourModel(root);
-            return aModel;
-        }
-
-
-    };
 
 }

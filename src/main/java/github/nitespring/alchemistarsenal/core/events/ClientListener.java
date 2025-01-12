@@ -10,6 +10,7 @@ import github.nitespring.alchemistarsenal.common.item.equipment.SteampunkChestpl
 import github.nitespring.alchemistarsenal.common.item.equipment.TurtleMasterArmourItem;
 import github.nitespring.alchemistarsenal.common.item.weapons.AutomaticCrossbow;
 import github.nitespring.alchemistarsenal.common.item.weapons.RepeatingCrossbow;
+import github.nitespring.alchemistarsenal.core.ClientItemExtensions;
 import github.nitespring.alchemistarsenal.core.init.DataComponentInit;
 import github.nitespring.alchemistarsenal.core.init.EntityInit;
 import github.nitespring.alchemistarsenal.core.init.ItemInit;
@@ -222,14 +223,14 @@ public class ClientListener {
 
     @SubscribeEvent
     public static void registerClientExtensions(RegisterClientExtensionsEvent event){
-        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_HELMET);
-        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_CHESTPLATE);
-        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_LEGGINGS);
-        event.registerItem(SteampunkChestplateItem.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_BOOTS);
-        event.registerItem(TurtleMasterArmourItem.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_HELMET);
-        event.registerItem(TurtleMasterArmourItem.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_CHESTPLATE);
-        event.registerItem(TurtleMasterArmourItem.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_LEGGINGS);
-        event.registerItem(TurtleMasterArmourItem.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_BOOTS);
+        event.registerItem(ClientItemExtensions.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_HELMET);
+        event.registerItem(ClientItemExtensions.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_CHESTPLATE);
+        event.registerItem(ClientItemExtensions.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_LEGGINGS);
+        event.registerItem(ClientItemExtensions.STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS, ItemInit.STEAMPUNK_BOOTS);
+        event.registerItem(ClientItemExtensions.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_HELMET);
+        event.registerItem(ClientItemExtensions.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_CHESTPLATE);
+        event.registerItem(ClientItemExtensions.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_LEGGINGS);
+        event.registerItem(ClientItemExtensions.TURTLE_ARMOUR_CLIENT_EXTENSIONS, ItemInit.TURTLE_MASTER_BOOTS);
     }
 
 

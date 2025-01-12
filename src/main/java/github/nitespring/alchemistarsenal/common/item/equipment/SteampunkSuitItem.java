@@ -131,26 +131,6 @@ public class SteampunkSuitItem extends ArmorItem{
         return slot == EquipmentSlot.LEGS ? TEXTURE_LOCATION_INNER_LAYER : TEXTURE_LOCATION_OUTER_LAYER;
     }
 
-    public static final IClientItemExtensions STEAMPUNK_ARMOUR_CLIENT_EXTENSIONS = new IClientItemExtensions(){
-        //private static final ArmorRender INSTANCE = new ArmorRender();
 
-        @Override
-        public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity living, ItemStack stack, EquipmentSlot slot, HumanoidModel<?> model) {
-            EntityModelSet models = Minecraft.getInstance().getEntityModels();
-            ModelPart root = models.bakeLayer(slot == EquipmentSlot.LEGS ? ModelLayers.PLAYER_INNER_ARMOR : SteampunkSuitModel.LAYER_LOCATION);
-
-            if(slot!=EquipmentSlot.LEGS){
-                SteampunkSuitModel<LivingEntity> aModel = new SteampunkSuitModel<LivingEntity>(root);
-                //aModel.setupAnim(living, 0, 0, 0, 0, 0);
-                return aModel;
-            }else{
-                HumanoidArmorModel<LivingEntity> aModel = new HumanoidArmorModel<LivingEntity>(root);
-                return aModel;
-            }
-
-        }
-
-
-    };
 
 }
